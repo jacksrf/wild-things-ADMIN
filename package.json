@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/als-flowers-API"
+    "start": "node ./bin/als-flowers-ADMIN"
   },
   "dependencies": {
     "body-parser": "1.18",
