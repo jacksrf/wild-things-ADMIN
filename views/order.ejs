@@ -12,25 +12,83 @@
   <body>
     <div id="pdf" class="holder" style="width: 1275px; height: 2100px; background-image: url('/images/background.jpg');    background-size: cover;background-position: center;">
       <div id="order_id" data-id="<%= order._id %>" style="display: none;"></div>
-      <!-- <div class="half" style="float: left; width: 4in; margin-bottom:30px;">
-        <h1 style="margin-top: 0px;">From:</h1>
-        <div><%= order.customer.default_address.name %></div>
-        <div><%= order.customer.email %></div>
-        <div><%= order.customer.default_address.phone %></div>
+      <div class="half" id="section_one" style="transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    position: absolute;
+    top: 325px;
+    right: 164px;
+    width: 500px;
+    height: 200px;
+    text-align: center;
+    display: table;
+    font-size: 24px;
+    line-height: 40px;">
+        <div>To: <%= order.shipping_address.name %></div>
+        <div>**** <%= order.note_attributes[1]['value'] %>  ****</div>
+        <div>Phone: <%= order.shipping_address.phone %></div>
+        <div>Order #: <%= order.order_number %></div>
       </div>
-      <div class="half" style="float: left; width: 4in; margin-bottom:30px;">
-        <h1 style="margin-top: 0px;">To:</h1>
+      <div class="half" id="section_two" style="    transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    position: absolute;
+    top: 250px;
+    right: 525px;
+    width: 900px;
+    height: 600px;
+    text-align: center;
+    /* display: table; */
+    font-size: 24px;
+    line-height: 40px;
+    text-align: left;">
+    <div class="line_item" style="width: 100%">
+      <div style="width: 50%; float: left; text-align: left;">Order #: <%= order.order_number %></div>
+      <div style="width: 50%; float: left; text-align: right;">Delivery Date: <%= order.note_attributes[3]['value'] %></div>
+    </div>
+    </br>
+        </br>
         <div><%= order.shipping_address.name %></div>
         <div><%= order.shipping_address.address1 %></div>
         <div><%= order.shipping_address.address2 %></div>
         <div><%= order.shipping_address.city %>, <%= order.shipping_address.state %> <%= order.shipping_address.zip %></div>
         <div><%= order.shipping_address.phone %></div>
-      </div> -->
+        </br>
+        <% for (i=0;i < order.line_items.length; i++) { %>
+          <div class="line_item" style="width: 100%">
+            <div style="width: 50%; float: left; text-align: left;"><%= order.line_items[i].title %></div>
+            <div style="width: 50%; float: left; text-align: right;"><%= order.line_items[i].price %></div>
+          </div>
+        <% } %>
+        <div class="total" style="width: 100%; text-align:right;">SUBTOTAL:   <%= order.subtotal_price %></div>
+        <div class="total" style="width: 100%; text-align:right;">TAX:   <%= order.total_tax %></div>
+        <div class="total" style="width: 100%; text-align:right;">TOTAL:   <%= order.total_price %></div>
+      </div>
+
+      <div class="half" id="section_two" style="    transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    position: absolute;
+    top: 1500px;
+    right: 750px;
+    width: 500px;
+    height: 600px;
+    text-align: center;
+    /* display: table; */
+    font-size: 24px;
+    line-height: 40px;
+    text-align: left;">
+        <div>Order #: <%= order.order_number %></div>
+        <div>Delivery Date: <%= order.note_attributes[3]['value'] %></div>
+        </br>
+        <div><%= order.shipping_address.name %></div>
+        <div><%= order.shipping_address.address1 %></div>
+        <div><%= order.shipping_address.address2 %></div>
+        <div><%= order.shipping_address.city %>, <%= order.shipping_address.state %> <%= order.shipping_address.zip %></div>
+        <div><%= order.shipping_address.phone %></div>
+      </div>
 
       <div class="half" id="message_holder" style="transform: rotate(90deg);
       -webkit-transform: rotate(90deg);
       position: absolute;
-      top: 325px;
+          top: 1670px;
       right: 100px;
       width: 500px;
       height: 200px;
@@ -50,9 +108,9 @@
         <div><%= order.note_attributes[0]["value"] %></div>
         <h1 style="margin-top: 0px;">Delivery Date:</h1>
         <div><%= order.note_attributes[3]["value"] %></div>
-      </div>
+      </div> -->
 
-      <div class="half" style="float: left; width: 4in; margin-bottom:30px;">
+      <!-- <div class="half" style="float: left; width: 4in; margin-bottom:30px;">
         <h1 style="margin-top: 0px;">Items:</h1>
         <div><%= order.line_items[0].title %></div>
         <div><%= order.line_items[0].price %></div>
