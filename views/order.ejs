@@ -11,7 +11,7 @@
   </head>
   <body>
     <div id="pdf" class="holder" style="width: 1275px; height: 2100px;
-    /* background-image: url('/images/background.jpg');     */
+    background-image: url('/images/background.jpg');
     background-size: cover;background-position: center;">
       <div id="order_id" data-id="<%= order._id %>" style="display: none;"></div>
       <div class="half" id="section_one" style="transform: rotate(90deg);
@@ -90,8 +90,8 @@
       <div class="half" id="message_holder" style="transform: rotate(90deg);
       -webkit-transform: rotate(90deg);
       position: absolute;
-          top: 1725px;
-      right: 50px;
+          top: 1775px;
+      right: 0px;
       width: 500px;
       height: 200px;
       text-align: center;
@@ -100,7 +100,7 @@
         vertical-align: middle;
         text-align: center;
         width: 100%;
-        height: 100%;font-size: 18px;"><%= order.note %></div>
+        height: 100%;"><%= order.note %></div>
       </div>
 
       <!-- <div class="half" style="float: left; width: 4in; margin-bottom:30px;">
