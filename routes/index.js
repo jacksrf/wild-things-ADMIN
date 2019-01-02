@@ -13,7 +13,7 @@ var shopifyURIapi = 'https://' + apiKey + ':' + apiSecret + '@'+ shop;
 var cheerio = require('cheerio')
 var htmlToImage = require('html-to-image');
 var webshot = require('webshot');
-
+var nl2br  = require('nl2br');
 
 var multipart = require('connect-multiparty');
 var multipartMiddleware = multipart();
@@ -74,8 +74,17 @@ router.get('/order/pdf/:id', function(req, res, next) {
   var db = req.db;
   var ordersDB = db.get('orders')
   ordersDB.findOne({"_id": id},{},function(err, order){
+    console.log(order.note);
+    order.note = nl2br(order.note);
     console.log(order);
-    res.render('order', {"order": order })
+    if (order.note_attributes.length === 6) {
+      res.render('web', {"order": order })
+    } else if (order.note_attributes.length === 7) {
+      res.render('instore', {"order": order })
+    } else if (order.note_attributes.length === 12) {
+      res.render('delivery', {"order": order })
+    }
+
   } )
 })
 
