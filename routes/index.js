@@ -76,13 +76,15 @@ router.get('/order/pdf/:id', function(req, res, next) {
   ordersDB.findOne({"_id": id},{},function(err, order){
     console.log(order.note);
     order.note = nl2br(order.note);
-    console.log(order);
+    console.log(order.note_attributes.length);
     if (order.note_attributes.length === 6) {
       res.render('web', {"order": order })
     } else if (order.note_attributes.length === 7) {
       res.render('instore', {"order": order })
     } else if (order.note_attributes.length === 12) {
       res.render('delivery', {"order": order })
+    } else {
+      res.render('old', {"order": order })
     }
 
   } )
