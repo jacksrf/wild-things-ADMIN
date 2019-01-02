@@ -78,10 +78,13 @@ router.get('/order/pdf/:id', function(req, res, next) {
     order.note = nl2br(order.note);
     console.log(order.note_attributes.length);
     if (order.note_attributes.length === 6) {
+      order.note = nl2br(order.note);
       res.render('web', {"order": order })
     } else if (order.note_attributes.length === 7) {
+      order.note_attributes[6].value = nl2br(order.note_attributes[6].value);
       res.render('instore', {"order": order })
     } else if (order.note_attributes.length === 12) {
+      order.note_attributes[7].value = nl2br(order.note_attributes[7].value);
       res.render('delivery', {"order": order })
     } else {
       res.render('old', {"order": order })
