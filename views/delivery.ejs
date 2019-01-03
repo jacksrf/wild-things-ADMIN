@@ -51,11 +51,8 @@
     </div>
     </br>
         </br>
-        <div><%= order.note_attributes[11]['value'] %></div>
-        <div><%= order.note_attributes[2]['value'] %></div>
-        <div><%= order.note_attributes[5]['value'] %></div>
-        <div><%= order.note_attributes[10]['value'] %>, <%= order.note_attributes[1]['value'] %> <%= order.note_attributes[8]['value'] %></div>
-        <div><%= order.note_attributes[3]['value'] %></div>
+        <div><%= order.customer.first_name %> <%= order.customer.last_name %></div>
+        <div><%= order.customer.phone %></div>
         </br>
         <% for (i=0;i < order.line_items.length; i++) { %>
           <div class="line_item" style="width: 100%">
