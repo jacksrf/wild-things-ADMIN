@@ -43,6 +43,7 @@
     line-height: 40px;
     text-align: left;">
     <div class="line_item" style="width: 100%">
+      <div style="width: 50%; float: left; text-align: left;"><%= order.closed_at %></div><div style="width: 50%; float: left; text-align: right;">Order Taken By: <%= order.staff %></div>
       <div style="width: 50%; float: left; text-align: left;">Order #: <%= order.order_number %></div>
       <div style="width: 50%; float: left; text-align: right;">Delivery Date: <%= order.note_attributes[3]['value'] %> Time: <%= order.note_attributes[0]['value'] %></div>
     </div>
@@ -58,7 +59,7 @@
         <% } %>
         <% for (i=0;i < order.line_items.length; i++) { %>
           <div class="line_item" style="width: 100%">
-            <div style="width: 50%; float: left; text-align: left;"><%= order.line_items[i].title %></div>
+            <div style="width: 50%; float: left; text-align: left;"><%= order.line_items[i].quantity %> - <%= order.line_items[i].title %></div>
             <div style="width: 50%; float: left; text-align: right;"><%= order.line_items[i].price %></div>
           </div>
         <% } %>

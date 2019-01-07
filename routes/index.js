@@ -14,7 +14,7 @@ var cheerio = require('cheerio')
 var htmlToImage = require('html-to-image');
 var webshot = require('webshot');
 var nl2br  = require('nl2br');
-
+var moment = require('moment');
 var multipart = require('connect-multiparty');
 var multipartMiddleware = multipart();
 
@@ -73,23 +73,57 @@ router.get('/order/pdf/:id', function(req, res, next) {
   var id = req.params.id;
   var db = req.db;
   var ordersDB = db.get('orders')
+  var staffDB = db.get('staff')
   ordersDB.findOne({"_id": id},{},function(err, order){
     console.log(order.note);
     order.note = nl2br(order.note);
     console.log(order.note_attributes.length);
-    if (order.note_attributes.length === 6) {
-      order.note = nl2br(order.note);
-      res.render('web', {"order": order })
-    } else if (order.note_attributes.length === 7) {
-      order.note_attributes[6].value = nl2br(order.note_attributes[6].value);
-      res.render('instore', {"order": order })
-    } else if (order.note_attributes.length === 12) {
-      order.note_attributes[7].value = nl2br(order.note_attributes[7].value);
-      res.render('delivery', {"order": order })
-    } else {
-      res.render('old', {"order": order })
-    }
-
+    staffDB.findOne({"user_id": order.user_id.toString()}, {}, function(err, staff) {
+         if (staff === null) {
+           console.log(staff)
+           if (order.note_attributes.length === 6) {
+             order.note = nl2br(order.note);
+             order.closed_at = moment(order.closed_at).format('M/D/YY')
+             res.render('web', {"order": order })
+           } else if (order.note_attributes.length === 7) {
+             order.note_attributes[6].value = nl2br(order.note_attributes[6].value);
+             order.note_attributes[3].value = moment(order.note_attributes[3].value).format('M/D/YY')
+             order.closed_at = moment(order.closed_at).format('M/D/YY')
+             order.staff = "Unknown";
+             res.render('instore', {"order": order })
+           } else if (order.note_attributes.length === 12) {
+             order.note_attributes[9].value = moment(order.note_attributes[9].value).format('M/D/YY')
+             order.note_attributes[9].value = nl2br(order.note_attributes[9].value);
+             order.closed_at = moment(order.closed_at).format('M/D/YY')
+             order.staff = "Unknown";
+             res.render('delivery', {"order": order })
+           } else {
+             res.render('old', {"order": order })
+           }
+         } else {
+          console.log(staff)
+          if (order.note_attributes.length === 6) {
+            order.note = nl2br(order.note);
+            order.closed_at = moment(order.closed_at).format('M/D/YY')
+            res.render('web', {"order": order })
+          } else if (order.note_attributes.length === 7) {
+            order.note_attributes[6].value = nl2br(order.note_attributes[6].value);
+            order.note_attributes[3].value = moment(order.note_attributes[3].value).format('M/D/YY')
+            order.closed_at = moment(order.closed_at).format('M/D/YY')
+            order.staff = staff.name;
+            res.render('instore', {"order": order })
+          } else if (order.note_attributes.length === 12) {
+            order.note_attributes[9].value = moment(order.note_attributes[9].value).format('M/D/YY')
+            order.note_attributes[9].value = nl2br(order.note_attributes[9].value);
+            order.closed_at = moment(order.closed_at).format('M/D/YY')
+            order.staff = staff.name;
+            res.render('delivery', {"order": order })
+          } else {
+            res.render('old', {"order": order })
+          }
+        }
+          // var html = fs.readFileSync('./test/businesscard.html', 'utf8');
+      })
   } )
 })
 
