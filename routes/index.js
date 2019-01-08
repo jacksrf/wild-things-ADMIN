@@ -75,16 +75,26 @@ router.get('/order/pdf/:id', function(req, res, next) {
   var ordersDB = db.get('orders')
   var staffDB = db.get('staff')
   ordersDB.findOne({"_id": id},{},function(err, order){
-    console.log(order.note);
-    order.note = nl2br(order.note);
     console.log(order.note_attributes.length);
+    order.note = nl2br(order.note);
+    if (order.user_id) {
+
+    } else {
+      order.user_id = "";
+    }
     staffDB.findOne({"user_id": order.user_id.toString()}, {}, function(err, staff) {
          if (staff === null) {
            console.log(staff)
            if (order.note_attributes.length === 6) {
              order.note = nl2br(order.note);
-             order.closed_at = moment(order.closed_at).format('M/D/YY')
+             order.processed_at = moment(order.processed_at).format('M/D/YY')
+              order.note_attributes[3].value = moment(order.note_attributes[3].value).format('M/D/YY')
              res.render('web', {"order": order })
+           } else if (order.note_attributes.length === 5) {
+             order.note = nl2br(order.note);
+             order.processed_at = moment(order.processed_at).format('M/D/YY')
+             order.note_attributes[2].value = moment(order.note_attributes[2].value).format('M/D/YY')
+             res.render('web2', {"order": order })
            } else if (order.note_attributes.length === 7) {
              order.note_attributes[6].value = nl2br(order.note_attributes[6].value);
              order.note_attributes[3].value = moment(order.note_attributes[3].value).format('M/D/YY')
@@ -104,8 +114,14 @@ router.get('/order/pdf/:id', function(req, res, next) {
           console.log(staff)
           if (order.note_attributes.length === 6) {
             order.note = nl2br(order.note);
-            order.closed_at = moment(order.closed_at).format('M/D/YY')
+            order.processed_at = moment(order.processed_at).format('M/D/YY')
+             order.note_attributes[3].value = moment(order.note_attributes[3].value).format('M/D/YY')
             res.render('web', {"order": order })
+          } else if (order.note_attributes.length === 5) {
+            order.note = nl2br(order.note);
+            order.processed_at = moment(order.processed_at).format('M/D/YY');
+             order.note_attributes[2].value = moment(order.note_attributes[2].value).format('M/D/YY')
+            res.render('web2', {"order": order });
           } else if (order.note_attributes.length === 7) {
             order.note_attributes[6].value = nl2br(order.note_attributes[6].value);
             order.note_attributes[3].value = moment(order.note_attributes[3].value).format('M/D/YY')
