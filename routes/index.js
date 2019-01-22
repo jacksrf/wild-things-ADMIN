@@ -77,6 +77,7 @@ router.get('/order/pdf/:id', function(req, res, next) {
   ordersDB.findOne({"_id": id},{},function(err, order){
     console.log(order.note_attributes.length);
     order.note = nl2br(order.note);
+    order.deliver_day = "";
     if (order.user_id) {
 
     } else {
@@ -89,21 +90,25 @@ router.get('/order/pdf/:id', function(req, res, next) {
              order.note = nl2br(order.note);
              order.processed_at = moment(order.processed_at).format('M/D/YY')
               order.note_attributes[3].value = moment(order.note_attributes[3].value).format('M/D/YY')
+              order.delivery_day = moment(order.note_attributes[3].value).format('dddd')
              res.render('web', {"order": order })
            } else if (order.note_attributes.length === 5) {
              order.note = nl2br(order.note);
              order.processed_at = moment(order.processed_at).format('M/D/YY')
              order.note_attributes[2].value = moment(order.note_attributes[2].value).format('M/D/YY')
+             order.delivery_day = moment(order.note_attributes[2].value).format('dddd')
              res.render('web2', {"order": order })
            } else if (order.note_attributes.length === 7) {
              order.note_attributes[6].value = nl2br(order.note_attributes[6].value);
              order.note_attributes[3].value = moment(order.note_attributes[3].value).format('M/D/YY')
              order.closed_at = moment(order.closed_at).format('M/D/YY')
+             order.delivery_day = moment(order.note_attributes[3].value).format('dddd')
              order.staff = "Unknown";
              res.render('instore', {"order": order })
            } else if (order.note_attributes.length === 12) {
              order.note_attributes[9].value = moment(order.note_attributes[9].value).format('M/D/YY')
              order.note_attributes[9].value = nl2br(order.note_attributes[9].value);
+             order.delivery_day = moment(order.note_attributes[9].value).format('dddd')
              order.closed_at = moment(order.closed_at).format('M/D/YY')
              order.staff = "Unknown";
              res.render('delivery', {"order": order })
@@ -116,22 +121,27 @@ router.get('/order/pdf/:id', function(req, res, next) {
             order.note = nl2br(order.note);
             order.processed_at = moment(order.processed_at).format('M/D/YY')
              order.note_attributes[3].value = moment(order.note_attributes[3].value).format('M/D/YY')
+             order.delivery_day = moment(order.note_attributes[3].value).format('dddd')
             res.render('web', {"order": order })
           } else if (order.note_attributes.length === 5) {
             order.note = nl2br(order.note);
             order.processed_at = moment(order.processed_at).format('M/D/YY');
              order.note_attributes[2].value = moment(order.note_attributes[2].value).format('M/D/YY')
+             order.delivery_day = moment(order.note_attributes[2].value).format('dddd')
             res.render('web2', {"order": order });
           } else if (order.note_attributes.length === 7) {
             order.note_attributes[6].value = nl2br(order.note_attributes[6].value);
             order.note_attributes[3].value = moment(order.note_attributes[3].value).format('M/D/YY')
             order.closed_at = moment(order.closed_at).format('M/D/YY')
+            order.delivery_day = moment(order.note_attributes[3].value).format('dddd')
             order.staff = staff.name;
             res.render('instore', {"order": order })
           } else if (order.note_attributes.length === 12) {
             order.note_attributes[9].value = moment(order.note_attributes[9].value).format('M/D/YY')
             order.note_attributes[9].value = nl2br(order.note_attributes[9].value);
             order.closed_at = moment(order.closed_at).format('M/D/YY')
+            order.delivery_day = moment(order.note_attributes[9].value).format('dddd')
+            console.log(moment(order.note_attributes[9].value).format('dddd'))
             order.staff = staff.name;
             res.render('delivery', {"order": order })
           } else {

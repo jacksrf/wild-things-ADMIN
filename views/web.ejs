@@ -57,7 +57,11 @@
         </br>
         <% if (order.customer) { %>
         <div><%= order.customer.first_name %> <%= order.customer.last_name %></div>
+        <% if (order.customer.phone != null) { %>
         <div><%= order.customer.phone %></div>
+        <% } else { %>
+        <div><%= order.billing.phone %></div>
+        <% } %>
         </br>
         <% } %>
         <% for (i=0;i < order.line_items.length; i++) { %>
