@@ -60,7 +60,7 @@
         <% if (order.customer.phone != null) { %>
         <div><%= order.customer.phone %></div>
         <% } else { %>
-        <div><%= order.billing.phone %></div>
+        <div><%= order.billing_address.phone %></div>
         <% } %>
         </br>
         <% } %>
