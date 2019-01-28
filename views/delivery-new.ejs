@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <div id="pdf" class="holder" style="width: 1275px; height: 2100px;
+    background-image: url('/images/background.jpg');
+    background-size: cover;background-position: center;">
+      <div id="order_id" data-id="<%= order._id %>" style="display: none;"></div>
+      <div class="half" id="section_one" style="transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    position: absolute;
+    top: 325px;
+    right: 113px;
+    width: 500px;
+    height: 200px;
+    text-align: center;
+    display: table;
+    font-size: 16px;
+    line-height: 26px;">
+        <div>To: <%= order.note_attributes[11]['value'] %></div>
+        <div>**** <%= order.note_attributes[6]['value'] %>  ****</div>
+        <div><%= order.note_attributes[2]['value'] %> - <%= order.note_attributes[5]['value'] %></div>
+        <div><%= order.note_attributes[10]['value'] %>, <%= order.note_attributes[1]['value'] %> <%= order.note_attributes[8]['value'] %></div>
+        <div>Phone: <%= order.note_attributes[3]['value'] %></div>
+        <div>Order #: <%= order.order_number %></div>
+      </div>
+      <div class="half" id="section_two" style="    transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    position: absolute;
+    top: 250px;
+    right: 525px;
+    width: 900px;
+    height: 600px;
+    text-align: center;
+    /* display: table; */
+    font-size: 16px;
+    line-height: 26px;
+    text-align: left;">
+    <div class="line_item" style="width: 100%">
+      <div style="width: 50%; float: left; text-align: left;"><%= order.note_attributes[6]['value'] %></div><div style="width: 50%; float: left; text-align: right;">Order #: <%= order.order_number %></div>
+      <div style="width: 100%; float: left; text-align: left; border-bottom: 1px solid black;margin-top:20px;margin-bottom: 20px;"></div>
+      <div style="width: 50%; float: left; text-align: left;">
+        <%= order.note_attributes[11]['value'] %></br>
+        <%= order.note_attributes[2]['value'] %></br>
+        <% if (order.note_attributes[5]['value']) { %>
+        <%= order.note_attributes[5]['value'] %></br>
+        <% } %>
+        <%= order.note_attributes[10]['value'] %>, <%= order.note_attributes[1]['value'] %> <%= order.note_attributes[8]['value'] %></br>
+        <%= order.note_attributes[3]['value'] %></br>
+      </div>
+      <div style="width: 50%; float: left; text-align: right;">Delivery:<%= order.delivery_day %> - <%= order.note_attributes[9]['value'] %> <% if (order.note_attributes[4]['value']) {%>Time: <%= order.note_attributes[4]['value'] %><% } %></div>
+      <div style="width: 100%; float: left; text-align: left;">Order Taken By: <%= order.staff %> at <%= order.closed_at %></div>
+      <div style="width: 100%; float: left; text-align: left; border-bottom: 1px solid black;margin-top:20px;margin-bottom: 20px;"></div>
+    </div>
+    <div class="line_item" style="width: 100%">
+      <div style="width: 100%; float: left; text-align: left;">Flower Notes: <%= order.note_attributes[0]['value'] %></div>
+    </div>
+    <div style="width: 100%; float: left;">
+        <% for (i=0;i < order.line_items.length; i++) { %>
+          <div class="line_item" style="width: 100%">
+            <div style="width: 50%; float: left; text-align: left;"><%= order.line_items[i].quantity %> - <%= order.line_items[i].title %></div>
+            <div style="width: 50%; float: left; text-align: right;"><%= order.line_items[i].price %></div>
+          </div>
+        <% } %>
+        <div class="total" style="width: 100%; text-align:right;">SUBTOTAL:   <%= order.subtotal_price %></div>
+        <div class="total" style="width: 100%; text-align:right;">TAX:   <%= order.total_tax %></div>
+        <div class="total" style="width: 100%; text-align:right;">TOTAL:   <%= order.total_price %></div>
+      </div>
+      <div style="width: 100%; float: left; text-align: left; border-bottom: 1px solid black;margin-top:20px;margin-bottom: 20px;"></div>
+      <div style="width: 50%; float: left; text-align: left; margin-bottom: 20px"><% if (order.gateway == 'shopify_payments') {%>Credit Card<% } else { %><%=order.gateway%> <%} %></div>
+      <div style="width: 100%; float: left;">
+      <% if (order.customer) { %>
+            <div>ID:<%= order.customer.id %></div>
+            <div><%= order.customer.first_name %> <%= order.customer.last_name %></div>
+            <% if (order.customer.default_address) { %>
+            <div><%= order.customer.default_address.address1 %></div>
+            <div><%= order.customer.default_address.address2 %></div>
+            <div><%= order.customer.default_address.city %>, <%= order.customer.default_address.province_code %> <%= order.customer.default_address.zip %></div>
+            <% } %>
+            <div><%= order.customer.phone %></div>
+            <% } %>
+
+          </div>
+    </div>
+    <div class="half" id="section_two" style="    transform: rotate(90deg);
+  -webkit-transform: rotate(90deg);
+  position: absolute;
+  top: 1550px;
+  right: 700px;
+  width: 500px;
+  height: 600px;
+  text-align: center;
+  /* display: table; */
+  font-size: 16px;
+  line-height: 26px;
+  text-align: left;">
+        <div>Order #: <%= order.order_number %></div>
+        <div>Delivery Date: <%= order.note_attributes[9]['value'] %></div>
+        <div>Delivery Time: <%= order.note_attributes[4]['value'] %></div>
+        </br>
+        <div><%= order.note_attributes[11]['value'] %></div>
+        <div><%= order.note_attributes[2]['value'] %></div>
+        <div><%= order.note_attributes[5]['value'] %></div>
+        <div><%= order.note_attributes[10]['value'] %>, <%= order.note_attributes[1]['value'] %> <%= order.note_attributes[8]['value'] %></div>
+        <div><%= order.note_attributes[3]['value'] %></div>
+      </div>
+
+      <div class="half" id="message_holder" style="transform: rotate(90deg);
+      -webkit-transform: rotate(90deg);
+      position: absolute;
+          top: 1775px;
+      right: 0px;
+      width: 500px;
+      height: 200px;
+      text-align: center;
+      display: table;">
+      <div id="message" style="display: table-cell;
+      vertical-align: middle;
+      text-align: center;
+      width: 100%;
+      height: 100%;font-size: 16px; line-height: 28px;"><%- order.note_attributes[7]['value'] %></div>
+      </div>
+
+      <!-- <div class="half" style="float: left; width: 4in; margin-bottom:30px;">
+        <h1 style="margin-top: 0px;">Note:</h1>
+        <div><%= order.note %></div>
+        <h1 style="margin-top: 0px;">Colors:</h1>
+        <div><%= order.note_attributes[0]["value"] %></div>
+        <h1 style="margin-top: 0px;">Delivery Date:</h1>
+        <div><%= order.note_attributes[3]["value"] %></div>
+      </div> -->
+
+      <!-- <div class="half" style="float: left; width: 4in; margin-bottom:30px;">
+        <h1 style="margin-top: 0px;">Items:</h1>
+        <div><%= order.line_items[0].title %></div>
+        <div><%= order.line_items[0].price %></div>
+      </div> -->
+    </div>
+</body>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.4.1/jspdf.debug.js" integrity="sha384-THVO/sM0mFD9h7dfSndI6TS0PgAGavwKvB5hAxRRvc0o9cPLohB0wb/PTA7LdUHs" crossorigin="anonymous"></script>
+  <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+  <script src="https://sdk.amazonaws.com/js/aws-sdk-2.283.1.min.js"></script>
+  <script>
+  // (function($) {
+    // $(window).on('load',function() {
+    //   var albumBucketName = 'als-flowers';
+    //   AWS.config.update({
+    //     "accessKeyId":"AKIAIDJRB5WLXVMNWEPA",
+    //     "secretAccessKey":"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",
+    //     "region":"us-east-1",
+    //     "s3BucketEndpoint": true,
+    //     "endpoint": "http://als-flowers.s3.amazonaws.com"
+    //   });
+    //
+    //   var s3 = new AWS.S3({
+    //     apiVersion: '2006-03-01',
+    //     params: {Bucket: albumBucketName},
+    //     sslEnabled: false
+    //   });
+    //
+    //   var order_id = $('#order_id').data('id')
+    //   var filename  = './'+ order_id +'.pdf';
+    //   html2canvas(document.querySelector('#pdf'),
+    //   								{scale: 1}
+    //   						 ).then(function(canvas) {
+    //         $('.ignore').show()
+    //   			var pdf = new jsPDF('p', 'mm', 'a4');
+    //   			pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, 211, 298);
+    //         var image = canvas.toDataURL('image/png')
+    //         console.log(canvas.toDataURL('image/png'))
+    //   			pdf.save(filename);
+    //         // var albumPhotosKey = encodeURIComponent('pdfs') + '//';
+    //         setTimeout(function() {
+    //           console.log("UPLOAD")
+    //           var photoKey = filename;
+    //           var data = {
+    //             Key: order_id + '.pdf',
+    //             Body: filename,
+    //             ACL: 'public-read',
+    //             ContentType: 'application/pdf'
+    //           };
+    //           s3.putObject(data, function(err, data) {
+    //             console.log(err)
+    //             if (err) {
+    //               // return alert('There was an error uploading your photo: ', err.message);
+    //               console.log(data)
+    //             } else {
+    //               alert('Successfully uploaded photo.');
+    //             }
+    //
+    //           });
+    //         },1000)
+    //
+    //     })
+    //   })
+    // });
+  </script>-->
+</html>
