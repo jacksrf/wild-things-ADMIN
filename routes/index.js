@@ -104,14 +104,14 @@ router.get('/order/pdf/:id', function(req, res, next) {
              order.closed_at = moment(order.closed_at).format('M/D/YY')
              order.delivery_day = moment(order.note_attributes[3].value).format('dddd')
              order.staff = "Unknown";
-             res.render('instore', {"order": order })
+             res.render('instore-new', {"order": order })
            } else if (order.note_attributes.length === 12) {
              order.note_attributes[9].value = moment(order.note_attributes[9].value).format('M/D/YY')
              order.note_attributes[9].value = nl2br(order.note_attributes[9].value);
              order.delivery_day = moment(order.note_attributes[9].value).format('dddd')
              order.closed_at = moment(order.closed_at).format('M/D/YY')
              order.staff = "Unknown";
-             res.render('delivery', {"order": order })
+             res.render('delivery-new', {"order": order })
            } else {
              res.render('old', {"order": order })
            }
@@ -135,7 +135,7 @@ router.get('/order/pdf/:id', function(req, res, next) {
             order.closed_at = moment(order.closed_at).format('M/D/YY')
             order.delivery_day = moment(order.note_attributes[3].value).format('dddd')
             order.staff = staff.name;
-            res.render('instore', {"order": order })
+            res.render('instore-new', {"order": order })
           } else if (order.note_attributes.length === 12) {
             order.note_attributes[9].value = moment(order.note_attributes[9].value).format('M/D/YY')
             order.note_attributes[9].value = nl2br(order.note_attributes[9].value);
@@ -143,7 +143,7 @@ router.get('/order/pdf/:id', function(req, res, next) {
             order.delivery_day = moment(order.note_attributes[9].value).format('dddd')
             console.log(moment(order.note_attributes[9].value).format('dddd'))
             order.staff = staff.name;
-            res.render('delivery', {"order": order })
+            res.render('delivery-new', {"order": order })
           } else {
             res.render('old', {"order": order })
           }
