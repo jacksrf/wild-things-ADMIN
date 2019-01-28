@@ -108,6 +108,12 @@
         <div>Card Message:</br>
           <%- order.note_attributes[7]['value'] %></div>
         </br>
+        <% for (i=0;i < order.line_items.length; i++) { %>
+          <div class="line_item" style="width: 100%">
+            <div style="width: 100%; float: left; text-align: left;"><%= order.line_items[i].quantity %> - <%= order.line_items[i].title %></div>
+          </div>
+        <% } %>
+        </br>
         <div><%= order.note_attributes[11]['value'] %></div>
         <div><%= order.note_attributes[2]['value'] %></div>
         <div><%= order.note_attributes[5]['value'] %></div>
