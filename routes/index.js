@@ -77,6 +77,7 @@ router.get('/order/pdf/:id', function(req, res, next) {
   ordersDB.findOne({"_id": id},{},function(err, order){
     console.log(order.note_attributes.length);
     order.note = nl2br(order.note);
+    console.log(order.note);
     order.deliver_day = "";
     if (order.user_id) {
 
@@ -107,10 +108,11 @@ router.get('/order/pdf/:id', function(req, res, next) {
              res.render('instore-new', {"order": order })
            } else if (order.note_attributes.length === 12) {
              order.note_attributes[9].value = moment(order.note_attributes[9].value).format('M/D/YY')
-             order.note_attributes[9].value = nl2br(order.note_attributes[9].value);
+             order.note_attributes[7].value = nl2br(order.note_attributes[7].value);
              order.delivery_day = moment(order.note_attributes[9].value).format('dddd')
              order.closed_at = moment(order.closed_at).format('M/D/YY')
              order.staff = "Unknown";
+             console.log(order.note_attributes[9].value)
              res.render('delivery-new', {"order": order })
            } else {
              res.render('old', {"order": order })
@@ -138,11 +140,12 @@ router.get('/order/pdf/:id', function(req, res, next) {
             res.render('instore-new', {"order": order })
           } else if (order.note_attributes.length === 12) {
             order.note_attributes[9].value = moment(order.note_attributes[9].value).format('M/D/YY')
-            order.note_attributes[9].value = nl2br(order.note_attributes[9].value);
+            order.note_attributes[7].value = nl2br(order.note_attributes[7].value);
             order.closed_at = moment(order.closed_at).format('M/D/YY')
             order.delivery_day = moment(order.note_attributes[9].value).format('dddd')
             console.log(moment(order.note_attributes[9].value).format('dddd'))
             order.staff = staff.name;
+            console.log(order.note_attributes[9].value)
             res.render('delivery-new', {"order": order })
           } else {
             res.render('old', {"order": order })
