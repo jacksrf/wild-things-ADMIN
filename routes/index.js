@@ -85,6 +85,7 @@ router.get('/order/pdf/:id', function(req, res, next) {
       order.user_id = "";
     }
     staffDB.findOne({"user_id": order.user_id.toString()}, {}, function(err, staff) {
+
          if (staff === null) {
            console.log(staff)
            if (order.note_attributes.length === 6) {
@@ -92,6 +93,7 @@ router.get('/order/pdf/:id', function(req, res, next) {
              order.processed_at = moment(order.processed_at).format('M/D/YY')
               order.note_attributes[3].value = moment(order.note_attributes[3].value).format('M/D/YY')
               order.delivery_day = moment(order.note_attributes[3].value).format('dddd')
+
              res.render('web', {"order": order })
            } else if (order.note_attributes.length === 5) {
              order.note = nl2br(order.note);
