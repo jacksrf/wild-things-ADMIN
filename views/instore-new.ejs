@@ -43,7 +43,7 @@
     text-align: left;">
     <div class="line_item" style="width: 100%">
       <% if (order.financial_status === "partially_paid") { %>
-      <div style="width: 100%; float: left; text-align: left; color: red;">UNPAID</div>
+      <div style="width: 100%; float: left; text-align: left; color: red;font-size: 28px;line-height: 36px;">UNPAID</div>
       <% } %>
       <div style="width: 50%; float: left; text-align: left;"><%= order.note_attributes[4]['value'] %></div><div style="width: 50%; float: left; text-align: right;">Order #: <%= order.order_number %></div>
       <div style="width: 100%; float: left; text-align: left; border-bottom: 1px solid black;margin-top:20px;margin-bottom: 20px;"></div>
@@ -99,7 +99,7 @@
   line-height: 26px;
   text-align: left;">
         <% if (order.financial_status === "partially_paid") { %>
-        <div style="color: red;">UNPAID</div>
+        <div style="color: red;font-size: 28px;line-height: 36px;">UNPAID</div>
         <% } %>
         <div>Order #: <%= order.order_number %></div>
         <div>Delivery Date: <%= order.note_attributes[3]['value'] %></div>
