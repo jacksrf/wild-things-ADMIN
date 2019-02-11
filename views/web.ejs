@@ -26,7 +26,7 @@
     font-size: 24px;
     line-height: 40px;">
         <div>To: <%= order.shipping_address.name %></div>
-        <div>**** <%= order.note_attributes[1]['value'] %>  ****</div>
+        <div>**** <%= order.orderNotes.delivery_location-id %>  ****</div>
         <div><%= order.shipping_address.address1 %>, <%= order.shipping_address.address2 %></div>
         <div><%= order.shipping_address.city %>, <%= order.shipping_address.state %> <%= order.shipping_address.zip %></div>
         <div>Phone: <%= order.shipping_address.phone %></div>
@@ -47,11 +47,11 @@
     <div class="line_item" style="width: 100%">
       <div style="width: 50%; float: left; text-align: left;"><%= order.processed_at %></div><div style="width: 50%; float: left; text-align: right;">Order Taken By: Online</div>
       <div style="width: 30%; float: left; text-align: left;">Order #: <%= order.order_number %></div>
-      <div style="width: 70%; float: left; text-align: right;">Delivery Date: <%= order.note_attributes[3]['value'] %> - <%= order.note_attributes[4]['value'] %></div>
+      <div style="width: 70%; float: left; text-align: right;">Delivery Date: <%= order.orderNotes.delivery_date %> - <%= order.orderNotes.delivery_time %></div>
     </div>
     </br>
     <div class="line_item" style="width: 100%">
-      <div style="width: 100%; float: left; text-align: left;">Flower Notes: <%= order.note_attributes[0]['value'] %></div>
+      <div style="width: 100%; float: left; text-align: left;">Flower Notes: <%= order.orderNotes.checkout-method %></div>
     </div>
     </br>
         </br>
@@ -88,8 +88,8 @@
     line-height: 40px;
     text-align: left;">
         <div>Order #: <%= order.order_number %></div>
-        <div>Delivery Date: <%= order.note_attributes[3]['value'] %></div>
-        <div>Delivery Time: <%= order.note_attributes[4]['value'] %></div>
+        <div>Delivery Date: <%= order.orderNotes.delivery_date %></div>
+        <div>Delivery Time: <%= order.orderNotes.delivery_time %></div>
         </br>
         <div><%= order.shipping_address.name %></div>
         <div><%= order.shipping_address.address1 %></div>
