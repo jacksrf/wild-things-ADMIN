@@ -26,7 +26,7 @@
     font-size: 24px;
     line-height: 40px;">
         <div>To: <%= order.shipping_address.name %></div>
-        <div>**** <%= order.orderNotes.delivery_location-id %>  ****</div>
+        <div>**** <%= order.orderNotes.checkout_method %>  ****</div>
         <div><%= order.shipping_address.address1 %>, <%= order.shipping_address.address2 %></div>
         <div><%= order.shipping_address.city %>, <%= order.shipping_address.state %> <%= order.shipping_address.zip %></div>
         <div>Phone: <%= order.shipping_address.phone %></div>
@@ -51,7 +51,7 @@
     </div>
     </br>
     <div class="line_item" style="width: 100%">
-      <div style="width: 100%; float: left; text-align: left;">Flower Notes: <%= order.orderNotes.checkout-method %></div>
+      <div style="width: 100%; float: left; text-align: left;">Flower Notes: <%= order.orderNotes.checkout_method %></div>
     </div>
     </br>
         </br>
