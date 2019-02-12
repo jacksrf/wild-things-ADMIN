@@ -129,6 +129,7 @@ router.get('/order/pdf/:id', function(req, res, next) {
              console.log(order.note_attributes[9].value)
              res.render('delivery-new', {"order": order })
            } else {
+             order.processed_at = moment(order.processed_at).format('M/D/YY')
              res.render('old', {"order": order })
            }
          } else {
@@ -162,6 +163,7 @@ router.get('/order/pdf/:id', function(req, res, next) {
             console.log(order.orderNotes.date)
             res.render('delivery-new', {"order": order })
           } else {
+            order.processed_at = moment(order.processed_at).format('M/D/YY')
             res.render('old', {"order": order })
           }
         }
