@@ -130,7 +130,7 @@ router.get('/order/pdf/:id', function(req, res, next) {
              res.render('delivery-new', {"order": order })
            } else {
              order.processed_at = moment(order.processed_at).format('M/D/YY')
-             res.render('delivery-missing'', {"order": order })
+             res.render('delivery-missing', {"order": order })
            }
          } else {
           console.log(staff)
@@ -164,7 +164,7 @@ router.get('/order/pdf/:id', function(req, res, next) {
             res.render('delivery-new', {"order": order })
           } else {
             order.processed_at = moment(order.processed_at).format('M/D/YY')
-            res.render('delivery-missing'', {"order": order })
+            res.render('delivery-missing', {"order": order })
           }
         }
           // var html = fs.readFileSync('./test/businesscard.html', 'utf8');
