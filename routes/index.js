@@ -128,6 +128,15 @@ router.get('/order/pdf/:id', function(req, res, next) {
              order.staff = "Unknown";
              console.log(order.note_attributes[9].value)
              res.render('delivery-new', {"order": order })
+           } else if (order.note_attributes.length === 13) {
+             order.orderNotes.date = moment(order.orderNotes.date).format('M/D/YY')
+             order.orderNotes.card_note = nl2br(order.orderNotes.card_note);
+             order.delivery_day = moment(order.orderNotes.date).format('dddd')
+             order.closed_at = moment(order.closed_at).format('M/D/YY')
+             order.staff = "Unknown";
+             order.orderNotes.wire_out_location = nl2br(order.orderNotes.wire_out_location);
+             console.log(order.orderNotes)
+             res.render('wire-out', {"order": order })
            } else {
              order.processed_at = moment(order.processed_at).format('M/D/YY')
              res.render('delivery-missing', {"order": order })
@@ -162,6 +171,16 @@ router.get('/order/pdf/:id', function(req, res, next) {
             order.staff = staff.name;
             console.log(order.orderNotes.date)
             res.render('delivery-new', {"order": order })
+          } else if (order.note_attributes.length === 13) {
+            order.orderNotes.date = moment(order.orderNotes.date).format('M/D/YY')
+            order.orderNotes.card_note = nl2br(order.orderNotes.card_note);
+            order.closed_at = moment(order.closed_at).format('M/D/YY')
+            order.delivery_day = moment(order.orderNotes.date).format('dddd')
+            console.log(moment(order.orderNotes.date).format('dddd'))
+            order.staff = staff.name;
+            order.orderNotes.wire_out_location = nl2br(order.orderNotes.wire_out_location);
+            console.log(order.orderNotes)
+            res.render('wire-out', {"order": order })
           } else {
             order.processed_at = moment(order.processed_at).format('M/D/YY')
             res.render('delivery-missing', {"order": order })
