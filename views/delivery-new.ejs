@@ -46,6 +46,8 @@
     <div class="line_item" style="width: 100%">
       <% if (order.financial_status === "partially_paid") { %>
       <div style="width: 100%; float: left; text-align: left; color: red;font-size: 28px;line-height: 36px;">UNPAID</div>
+      <% } else { %>
+      <div style="width: 100%; float: left; text-align: left; color: green;font-size: 28px;line-height: 36px;">PAID</div>
       <% } %>
       <div style="width: 50%; float: left; text-align: left;"><%= order.orderNotes.type %></div><div style="width: 50%; float: left; text-align: right;">Order #: <%= order.order_number %></div>
       <div style="width: 100%; float: left; text-align: left; border-bottom: 1px solid black;margin-top:20px;margin-bottom: 20px;"></div>
@@ -110,11 +112,14 @@
   font-size: 22px;
   line-height: 26px;
   text-align: left;">
-        <% if (order.financial_status === "partially_paid") { %>
-        <div style="color: red;font-size: 28px;line-height: 36px;">UNPAID</div>
-        <% } %>
+  <% if (order.financial_status === "partially_paid") { %>
+  <div style="color: red;font-size: 28px;line-height: 36px;">UNPAID</div>
+  <% } else { %>
+    <div style="color: green;font-size: 28px;line-height: 36px;">PAID</div>
+  <% } %>
         <div>Order #: <%= order.order_number %></div>
         <div>Delivery Date: <%= order.orderNotes.date %></div>
+        <div>Delivery Day: <%= order.delivery_day %></div>
         <div>Delivery Time: <%= order.orderNotes.time %></div>
         <div>Card Message:</br>
           <%- order.orderNotes.card_note %></div>
