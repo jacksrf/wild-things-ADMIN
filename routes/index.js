@@ -75,6 +75,7 @@ router.get('/order/pdf/:id', function(req, res, next) {
   var ordersDB = db.get('orders')
   var staffDB = db.get('staff')
   ordersDB.findOne({"_id": id},{},function(err, order){
+    console.log(order)
     console.log(order.note_attributes.length);
     order.note = nl2br(order.note);
     console.log(order.note);
@@ -99,20 +100,22 @@ router.get('/order/pdf/:id', function(req, res, next) {
     staffDB.findOne({"user_id": order.user_id.toString()}, {}, function(err, staff) {
          if (staff === null) {
            console.log(staff)
-           if (order.note_attributes.length === 6) {
+            if (order.note_attributes.length === 11) {
+
+              order.note = nl2br(order.note);
+              order.created_at = moment(order.created_at).format('M/D/YY')
+              order.orderNotes.date = moment(order.orderNotes.date).format('M/D/YY')
+              order.delivery_day = moment(order.orderNotes.date).format('dddd')
+
+             res.render('web2-new', {"order": order })
+           } else if (order.note_attributes.length === 6) {
 
              order.note = nl2br(order.note);
              order.processed_at = moment(order.processed_at).format('M/D/YY')
               order.orderNotes.date = moment(order.orderNotes.date).format('M/D/YY')
               order.delivery_day = moment(order.orderNotes.date).format('dddd')
 
-             res.render('web', {"order": order })
-           } else if (order.note_attributes.length === 5) {
-             order.note = nl2br(order.note);
-             order.processed_at = moment(order.processed_at).format('M/D/YY')
-             order.orderNotes.date = moment(order.orderNotes.date).format('M/D/YY')
-             order.delivery_day = moment(order.orderNotes.date).format('dddd')
-             res.render('web2', {"order": order })
+             res.render('web-new', {"order": order })
            } else if (order.note_attributes.length === 7) {
              order.note_attributes[6].value = nl2br(order.note_attributes[6].value);
              order.orderNotes.date = moment(order.orderNotes.date).format('M/D/YY')
@@ -143,18 +146,22 @@ router.get('/order/pdf/:id', function(req, res, next) {
            }
          } else {
           console.log(staff)
-          if (order.note_attributes.length === 6) {
+          if (order.note_attributes.length === 11) {
+
             order.note = nl2br(order.note);
-            order.processed_at = moment(order.processed_at).format('M/D/YY')
-             order.orderNotes.date = moment(order.orderNotes.date).format('M/D/YY')
-             order.delivery_day = moment(order.orderNotes.date).format('dddd')
-            res.render('web', {"order": order })
-          } else if (order.note_attributes.length === 5) {
-            order.note = nl2br(order.note);
-            order.processed_at = moment(order.processed_at).format('M/D/YY');
-             order.orderNotes.date = moment(order.orderNotes.date).format('M/D/YY')
-             order.delivery_day = moment(order.orderNotes.date).format('dddd')
-            res.render('web2', {"order": order });
+            order.created_at = moment(order.created_at).format('M/D/YY')
+            order.orderNotes.date = moment(order.orderNotes.date).format('M/D/YY')
+            order.delivery_day = moment(order.orderNotes.date).format('dddd')
+
+           res.render('web2-new', {"order": order })
+         } else if (order.note_attributes.length === 6) {
+
+           order.note = nl2br(order.note);
+           order.processed_at = moment(order.processed_at).format('M/D/YY')
+            order.orderNotes.date = moment(order.orderNotes.date).format('M/D/YY')
+            order.delivery_day = moment(order.orderNotes.date).format('dddd')
+
+           res.render('web-new', {"order": order })
           } else if (order.note_attributes.length === 7) {
             order.orderNotes.card_note = nl2br(order.orderNotes.card_note);
             order.orderNotes.date = moment(order.orderNotes.date).format('M/D/YY')
