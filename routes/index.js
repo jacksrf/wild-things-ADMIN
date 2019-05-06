@@ -108,7 +108,7 @@ router.get('/order/pdf/:id', function(req, res, next) {
               order.delivery_day = moment(order.orderNotes.date).format('dddd')
 
              res.render('web2-new', {"order": order })
-           } else if (order.note_attributes.length === 6) {
+           } else if (order.note_attributes.length === 5) {
 
              order.note = nl2br(order.note);
              order.processed_at = moment(order.processed_at).format('M/D/YY')
@@ -154,7 +154,7 @@ router.get('/order/pdf/:id', function(req, res, next) {
             order.delivery_day = moment(order.orderNotes.date).format('dddd')
 
            res.render('web2-new', {"order": order })
-         } else if (order.note_attributes.length === 6) {
+         } else if (order.note_attributes.length === 5) {
 
            order.note = nl2br(order.note);
            order.processed_at = moment(order.processed_at).format('M/D/YY')
