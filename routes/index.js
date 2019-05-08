@@ -100,7 +100,7 @@ router.get('/order/pdf/:id', function(req, res, next) {
     staffDB.findOne({"user_id": order.user_id.toString()}, {}, function(err, staff) {
          if (staff === null) {
            console.log(staff)
-            if (order.note_attributes.length === 11) {
+            if (order.note_attributes.length === 11 || order.note_attributes.length === 10) {
 
               order.note = nl2br(order.note);
               order.created_at = moment(order.created_at).format('M/D/YY')
