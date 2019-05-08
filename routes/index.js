@@ -104,16 +104,16 @@ router.get('/order/pdf/:id', function(req, res, next) {
 
               order.note = nl2br(order.note);
               order.created_at = moment(order.created_at).format('M/D/YY')
-              order.orderNotes.date = moment(order.orderNotes.date).format('M/D/YY')
-              order.delivery_day = moment(order.orderNotes.date).format('dddd')
+              order.orderNotes.delivery_date = moment(order.orderNotes.delivery_date).format('M/D/YY')
+              order.delivery_day = moment(order.orderNotes.delivery_date).format('dddd')
 
              res.render('web2-new', {"order": order })
            } else if (order.note_attributes.length === 5 || order.note_attributes.length === 6) {
 
              order.note = nl2br(order.note);
              order.processed_at = moment(order.processed_at).format('M/D/YY')
-              order.orderNotes.date = moment(order.orderNotes.date).format('M/D/YY')
-              order.delivery_day = moment(order.orderNotes.date).format('dddd')
+              order.orderNotes.delivery_date = moment(order.orderNotes.delivery_date).format('M/D/YY')
+              order.delivery_day = moment(order.orderNotes.delivery_date).format('dddd')
 
              res.render('web-new', {"order": order })
            } else if (order.note_attributes.length === 7) {
@@ -150,16 +150,16 @@ router.get('/order/pdf/:id', function(req, res, next) {
 
             order.note = nl2br(order.note);
             order.created_at = moment(order.created_at).format('M/D/YY')
-            order.orderNotes.date = moment(order.orderNotes.date).format('M/D/YY')
-            order.delivery_day = moment(order.orderNotes.date).format('dddd')
+            order.orderNotes.delivery_date = moment(order.orderNotes.delivery_date).format('M/D/YY')
+            order.delivery_day = moment(order.orderNotes.delivery_date).format('dddd')
 
            res.render('web2-new', {"order": order })
          } else if (order.note_attributes.length === 5 || order.note_attributes.length === 6) {
 
            order.note = nl2br(order.note);
            order.processed_at = moment(order.processed_at).format('M/D/YY')
-            order.orderNotes.date = moment(order.orderNotes.date).format('M/D/YY')
-            order.delivery_day = moment(order.orderNotes.date).format('dddd')
+            order.orderNotes.delivery_date = moment(order.orderNotes.delivery_date).format('M/D/YY')
+            order.delivery_day = moment(order.orderNotes.delivery_date).format('dddd')
 
            res.render('web-new', {"order": order })
           } else if (order.note_attributes.length === 7) {

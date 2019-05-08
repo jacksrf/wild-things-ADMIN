@@ -111,8 +111,8 @@
     <div style="color: green;font-size: 28px;line-height: 36px;">PAID</div>
   <% } %>
         <div>Order #: <%= order.order_number %></div>
-        <div>Delivery Date: <%= order.orderNotes.date %></div>
-        <div>Delivery Day: <%= order.orderNotes.pickup_date %></div>
+        <div>Delivery Date: <%= order.orderNotes.delivery_date %></div>
+        <div>Delivery Day: <%= order.delivery_day %></div>
         <div>Delivery Time: <%= order.orderNotes.pickup_time %></div>
         <div>Card Message:</br>
           <%- order.orderNotes.note %></div>
