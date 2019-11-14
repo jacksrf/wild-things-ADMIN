@@ -61,7 +61,7 @@
         Online at <%= order.created_at %>
       </div>
       <div style="width: 50%; float: left; text-align: right;">
-        Delivery: <%= order.delivery_day %> - <%= order.orderNotes.delivery_date %> <% if (order.orderNotes.delivery_time) {%>Time: <%= order.orderNotes.delivery_time %><% } %></br>
+        Delivery: <%= order.delivery_day %> - <%= order.orderNotes.delivery_date %> <% if (order.orderNotes.delivery_time) {%></br>Time: <%= order.orderNotes.delivery_time.replace(/;/g, ':') %><% } %></br>
         <div style="width: 100%; float: left; text-align: left; border-bottom: 1px solid black;margin-top:20px;margin-bottom: 20px;"></div>
         Card Message: </br><%- order.note %></br>
       </div>

@@ -64,7 +64,7 @@
         <%= order.staff %> at <%= order.closed_at %>
       </div>
       <div style="width: 50%; float: left; text-align: right;">
-        Delivery: <%= order.delivery_day %> - <%= order.orderNotes.date %> <% if (order.orderNotes.time) {%>Time: <%= order.orderNotes.time %><% } %></br>
+        Delivery: <%= order.delivery_day %> - <%= order.orderNotes.date %> <% if (order.orderNotes.time) {%></br>Time: <%= order.orderNotes.time.replace(/;/g,":") %><% } %></br>
         <div style="width: 100%; float: left; text-align: left; border-bottom: 1px solid black;margin-top:20px;margin-bottom: 20px;"></div>
         Card Message: </br><%- order.orderNotes.card_note %></br>
       </div>
