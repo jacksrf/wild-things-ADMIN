@@ -26,6 +26,7 @@
     line-height: 26px;">
         <div>To: <%= order.orderNotes.recipient %></div>
         <div>**** <%= order.orderNotes.type %>  ****</div>
+        <div><%= order.orderNotes.business_name_or_subdivision %></div>
         <div><%= order.orderNotes.address_1 %> - <%= order.orderNotes.address_2 %></div>
         <div><%= order.orderNotes.city %>, <%= order.orderNotes.state %> <%= order.orderNotes.zip %></div>
         <div>Phone: <%= order.orderNotes.phone %></div>
@@ -35,9 +36,9 @@
     -webkit-transform: rotate(90deg);
     position: absolute;
     top: 250px;
-    right: 500px;
+    right: 450px;
     width: 900px;
-    height: 600px;
+    height: 650px;
     text-align: center;
     /* display: table; */
     font-size: 22px;
@@ -52,6 +53,7 @@
       <div style="width: 50%; float: left; text-align: left;"><%= order.orderNotes.type %></div><div style="width: 50%; float: left; text-align: right;">Order #: <%= order.order_number %></div>
       <div style="width: 100%; float: left; text-align: left; border-bottom: 1px solid black;margin-top:20px;margin-bottom: 20px;"></div>
       <div style="width: 50%; float: left; text-align: left;">
+        <%= order.orderNotes.business_name_or_subdivision %></br>
         <%= order.orderNotes.recipient %></br>
         <%= order.orderNotes.address_1 %></br>
         <% if (order.orderNotes.address_2) { %>
@@ -131,6 +133,7 @@
         <% } %>
         </br>
         <div><%= order.orderNotes.recipient %></div>
+        <div><%= order.orderNotes.business_name_or_subdivision %></div>
         <div><%= order.orderNotes.address_1 %></div>
         <div><%= order.orderNotes.address_2 %></div>
         <div><%= order.orderNotes.city %>, <%= order.orderNotes.state %> <%= order.orderNotes.zip %></div>

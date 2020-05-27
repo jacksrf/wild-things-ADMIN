@@ -98,7 +98,7 @@ router.get('/order/pdf/:id', function(req, res, next) {
     }
 
     staffDB.findOne({"user_id": order.user_id.toString()}, {}, function(err, staff) {
-      console.log(order.orderNotes.checkout_method)
+      console.log(order.orderNotes)
          if (staff === null) {
            console.log(staff)
             if (order.note_attributes.length === 11 || order.note_attributes.length === 10) {
@@ -114,7 +114,7 @@ router.get('/order/pdf/:id', function(req, res, next) {
            // } else if (order.note_attributes.length === 5 || order.note_attributes.length === 6) {
            //
            //
-         } else if (order.note_attributes.length === 5 || order.note_attributes.length === 6 || order.note_attributes.length === 7 || order.note_attributes.length === 8) {
+         } else if (order.note_attributes.length === 5 || order.note_attributes.length === 6 || order.note_attributes.length === 7 || order.note_attributes.length === 8 || order.note_attributes.length === 9) {
              if (order.orderNotes.checkout_method === 'delivery') {
                order.note = nl2br(order.note);
                 order.processed_at = moment(order.processed_at).format('M/D/YY')
@@ -130,7 +130,7 @@ router.get('/order/pdf/:id', function(req, res, next) {
                res.render('instore-new', {"order": order })
              }
 
-           } else if (order.note_attributes.length === 12) {
+           } else if (order.note_attributes.length === 13 || order.note_attributes.length === 12) {
              order.orderNotes.date = moment(order.orderNotes.date).format('M/D/YY')
              order.orderNotes.card_note = nl2br(order.orderNotes.card_note);
              order.delivery_day = moment(order.orderNotes.date).format('dddd')
@@ -138,7 +138,7 @@ router.get('/order/pdf/:id', function(req, res, next) {
              order.staff = "Unknown";
              // console.log(order.note_attributes[9].value)
              res.render('delivery-new', {"order": order })
-           } else if (order.note_attributes.length === 13) {
+           } else if (order.note_attributes.length === 14) {
              order.orderNotes.date = moment(order.orderNotes.date).format('M/D/YY')
              order.orderNotes.card_note = nl2br(order.orderNotes.card_note);
              order.delivery_day = moment(order.orderNotes.date).format('dddd')
@@ -169,7 +169,7 @@ router.get('/order/pdf/:id', function(req, res, next) {
          //    order.delivery_day = moment(order.orderNotes.delivery_date).format('dddd')
          //
          //   res.render('web-new', {"order": order })
-       } else if (order.note_attributes.length === 5 || order.note_attributes.length === 6 || order.note_attributes.length === 7 || order.note_attributes.length === 8) {
+       } else if (order.note_attributes.length === 5 || order.note_attributes.length === 6 || order.note_attributes.length === 7 || order.note_attributes.length === 8 || order.note_attributes.length === 9) {
               if (order.orderNotes.checkout_method === 'delivery') {
                 order.note = nl2br(order.note);
                   order.processed_at = moment(order.processed_at).format('M/D/YY')
@@ -189,7 +189,7 @@ router.get('/order/pdf/:id', function(req, res, next) {
               }
 
 
-          } else if (order.note_attributes.length === 12) {
+          } else if (order.note_attributes.length === 13 || order.note_attributes.length === 12) {
             order.orderNotes.date = moment(order.orderNotes.date).format('M/D/YY')
             order.orderNotes.card_note = nl2br(order.orderNotes.card_note);
             order.closed_at = moment(order.closed_at).format('M/D/YY')
@@ -198,7 +198,7 @@ router.get('/order/pdf/:id', function(req, res, next) {
             order.staff = staff.name;
             // console.log(order.orderNotes.date)
             res.render('delivery-new', {"order": order })
-          } else if (order.note_attributes.length === 13) {
+          } else if (order.note_attributes.length === 14) {
             order.orderNotes.date = moment(order.orderNotes.date).format('M/D/YY')
             order.orderNotes.card_note = nl2br(order.orderNotes.card_note);
             order.closed_at = moment(order.closed_at).format('M/D/YY')
