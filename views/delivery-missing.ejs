@@ -44,7 +44,7 @@
     line-height: 26px;
     text-align: left;">
     <div class="line_item" style="width: 100%">
-      <% if (order.financial_status === "partially_paid") { %>
+      <% if (order.financial_status === "partially_paid" || order.financial_status === "pending") { %>
       <div style="width: 100%; float: left; text-align: left; color: red;font-size: 28px;line-height: 36px;">UNPAID</div>
       <% } else { %>
       <div style="width: 100%; float: left; text-align: left; color: green;font-size: 28px;line-height: 36px;">PAID</div>
@@ -105,7 +105,7 @@
   font-size: 18px;
   line-height: 26px;
   text-align: left;">
-        <% if (order.financial_status === "partially_paid") { %>
+        <% if (order.financial_status === "partially_paid" || order.financial_status === "pending") { %>
         <div style="color: red;font-size: 28px;line-height: 36px;">UNPAID</div>
         <% } else { %>
           <div style="color: green;font-size: 28px;line-height: 36px;">PAID</div>
