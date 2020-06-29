@@ -34,7 +34,7 @@
     position: absolute;
     top: 250px;
     right: 450px;
-    width: 900px;
+    width: 1000px;
     height: 650px;
     text-align: center;
     /* display: table; */
@@ -48,7 +48,7 @@
       <div style="width: 100%; float: left; text-align: left; color: green;font-size: 28px;line-height: 36px;">PAID</div>
       <% } %>
       <div style="width: 50%; float: left; text-align: left; color: orange;"><%= order.orderNotes.type %></div><div style="width: 50%; float: left; text-align: right;">Order #: <%= order.order_number %></div>
-      <div style="width: 100%; float: left; text-align: left; border-bottom: 1px solid black;margin-top:20px;margin-bottom: 20px;"></div>
+      <div style="width: 100%; float: left; text-align: left; border-bottom: 1px solid black;margin-top:10px;margin-bottom: 10px;"></div>
       <div style="width: 50%; float: left; text-align: left;">
         <%= order.orderNotes.recipient %></br>
         <%= order.orderNotes.date %></br>
@@ -56,7 +56,7 @@
       <div style="width: 50%; float: left; text-align: right;">Delivery:<%= order.delivery_day %> - <%= order.orderNotes.phone %> <% if (order.orderNotes.type) {%>Time: <%= order.orderNotes.time %><% } %></div>
       <div style="width: 100%; float: left; text-align: left;">Card Message: <%- order.orderNotes.card_note %></div>
       <div style="width: 100%; float: left; text-align: left;">Order Taken By: <%= order.staff %> at <%= order.closed_at %></div>
-      <div style="width: 100%; float: left; text-align: left; border-bottom: 1px solid black;margin-top:20px;margin-bottom: 20px;"></div>
+      <div style="width: 100%; float: left; text-align: left; border-bottom: 1px solid black;margin-top:10px;margin-bottom: 10px;"></div>
     </div>
     <div class="line_item" style="width: 100%">
       <div style="width: 100%; float: left; text-align: left;">Flower Notes: <%= order.orderNotes.flower_notes %></div>
@@ -72,7 +72,7 @@
         <div class="total" style="width: 100%; text-align:right;">TAX:   <%= order.total_tax %></div>
         <div class="total" style="width: 100%; text-align:right;">TOTAL:   <%= order.total_price %></div>
       </div>
-      <div style="width: 100%; float: left; text-align: left; border-bottom: 1px solid black;margin-top:20px;margin-bottom: 20px;"></div>
+      <div style="width: 100%; float: left; text-align: left; border-bottom: 1px solid black;margin-top:10px;margin-bottom: 10px;"></div>
       <div style="width: 50%; float: left; text-align: left; margin-bottom: 20px"><% if (order.gateway == 'shopify_payments') {%>Credit Card<% } else { %><%=order.gateway%> <%} %></div>
       <div style="width: 100%; float: left;">
       <% if (order.customer) { %>
