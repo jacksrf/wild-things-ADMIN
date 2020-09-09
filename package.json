@@ -1,9 +1,9 @@
 {
-  "name": "als-flowers-api",
+  "name": "wild-things-api",
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/als-flowers-ADMIN"
+    "start": "node ./bin/wild-things-ADMIN"
   },
   "dependencies": {
     "body-parser": "1.18",
