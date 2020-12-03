@@ -70,7 +70,7 @@ router.get('/order/pdf/:id', function(req, res, next) {
   var ordersDB = db.get('orders')
   var staffDB = db.get('staff')
   ordersDB.findOne({"_id": id},{},function(err, order){
-    // console.log(order)
+    console.log(order)
     console.log(order.note_attributes.length);
     order.note = nl2br(order.note);
     console.log(order.note);
@@ -94,120 +94,120 @@ router.get('/order/pdf/:id', function(req, res, next) {
 
     staffDB.findOne({"user_id": order.user_id.toString()}, {}, function(err, staff) {
       console.log(order.orderNotes)
-         if (staff === null) {
-           console.log(staff)
-            if (order.note_attributes.length === 11 || order.note_attributes.length === 10) {
-
-              console.log(order.orderNotes.pickup_date)
-              console.log(moment(order.orderNotes.pickup_date, 'YYYY/MM/DD').format('dddd'))
-              order.note = nl2br(order.note);
-              order.created_at = moment(order.created_at).format('M/D/YY')
-              order.orderNotes.delivery_date = moment(order.orderNotes.pickup_date).format('M/D/YY')
-              order.pickup_day = moment(order.orderNotes.pickup_date, 'YYYY/MM/DD').format('dddd')
-
-             res.render('web2-new', {"order": order })
-           // } else if (order.note_attributes.length === 5 || order.note_attributes.length === 6) {
-           //
-           //
-         } else if (order.note_attributes.length === 5 || order.note_attributes.length === 6 || order.note_attributes.length === 7 || order.note_attributes.length === 8 || order.note_attributes.length === 9) {
-             if (order.orderNotes.checkout_method === 'delivery') {
-               order.note = nl2br(order.note);
-                order.processed_at = moment(order.processed_at).format('M/D/YY')
-                 order.orderNotes.delivery_date = moment(order.orderNotes.delivery_date).format('M/D/YY')
-                 order.delivery_day = moment(order.orderNotes.delivery_date).format('dddd')
-                res.render('web-new', {"order": order })
-             } else {
-               order.note_attributes[6].value = nl2br(order.note_attributes[6].value);
-               order.orderNotes.date = moment(order.orderNotes.date).format('M/D/YY')
-               order.closed_at = moment(order.closed_at).format('M/D/YY')
-               order.delivery_day = moment(order.orderNotes.date).format('dddd')
-               order.staff = "Unknown";
-               res.render('instore-new', {"order": order })
-             }
-
-           } else if (order.note_attributes.length === 13 || order.note_attributes.length === 12) {
-             order.orderNotes.date = moment(order.orderNotes.date).format('M/D/YY')
-             order.orderNotes.card_note = nl2br(order.orderNotes.card_note);
-             order.delivery_day = moment(order.orderNotes.date).format('dddd')
-             order.closed_at = moment(order.closed_at).format('M/D/YY')
-             order.staff = "Unknown";
-             // console.log(order.note_attributes[9].value)
-             res.render('delivery-new', {"order": order })
-           } else if (order.note_attributes.length === 14) {
-             order.orderNotes.date = moment(order.orderNotes.date).format('M/D/YY')
-             order.orderNotes.card_note = nl2br(order.orderNotes.card_note);
-             order.delivery_day = moment(order.orderNotes.date).format('dddd')
-             order.closed_at = moment(order.closed_at).format('M/D/YY')
-             order.staff = "Unknown";
-             order.orderNotes.wire_out_location = nl2br(order.orderNotes.wire_out_location);
-             // console.log(order.orderNotes)
-             res.render('wire-out', {"order": order })
-           } else {
-             order.processed_at = moment(order.processed_at).format('M/D/YY')
-             res.render('delivery-missing', {"order": order })
-           }
-         } else {
-          console.log(staff)
-          if (order.note_attributes.length === 11 || order.note_attributes.length === 10) {
-
-              order.note = nl2br(order.note);
-              order.created_at = moment(order.created_at).format('M/D/YY')
-              order.orderNotes.delivery_date = moment(order.orderNotes.delivery_date).format('M/D/YY')
-              order.delivery_day = moment(order.orderNotes.delivery_date).format('dddd')
-
-             res.render('web2-new', {"order": order })
-           // } else if (order.note_attributes.length === 5 || order.note_attributes.length === 6) {
-           //
-           //   order.note = nl2br(order.note);
-           //   order.processed_at = moment(order.processed_at).format('M/D/YY')
-           //    order.orderNotes.delivery_date = moment(order.orderNotes.delivery_date).format('M/D/YY')
-           //    order.delivery_day = moment(order.orderNotes.delivery_date).format('dddd')
-           //
-           //   res.render('web-new', {"order": order })
-         } else if (order.note_attributes.length === 5 || order.note_attributes.length === 6 || order.note_attributes.length === 7 || order.note_attributes.length === 8 || order.note_attributes.length === 9) {
-              if (order.orderNotes.checkout_method === 'delivery') {
-                order.note = nl2br(order.note);
-                  order.processed_at = moment(order.processed_at).format('M/D/YY')
-                   order.orderNotes.delivery_date = moment(order.orderNotes.delivery_date).format('M/D/YY')
-                   order.delivery_day = moment(order.orderNotes.delivery_date).format('dddd')
-
-                  res.render('web-new', {"order": order })
-              } else {
-                console.log(order.orderNotes.date)
-                console.log(moment().format('dddd'))
-                order.orderNotes.card_note = nl2br(order.orderNotes.card_note);
-                order.orderNotes.date = moment(order.orderNotes.date).format('M/D/YY')
-                order.closed_at = moment(order.closed_at).format('M/D/YY')
-                order.delivery_day = moment(order.orderNotes.date).format('dddd')
-                order.staff = staff.name;
-                res.render('instore-new', {"order": order })
-              }
-
-
-          } else if (order.note_attributes.length === 13 || order.note_attributes.length === 12) {
-            order.orderNotes.date = moment(order.orderNotes.date).format('M/D/YY')
-            order.orderNotes.card_note = nl2br(order.orderNotes.card_note);
-            order.closed_at = moment(order.closed_at).format('M/D/YY')
-            order.delivery_day = moment(order.orderNotes.date).format('dddd')
-            // console.log(moment(order.orderNotes.date).format('dddd'))
-            order.staff = staff.name;
-            // console.log(order.orderNotes.date)
-            res.render('delivery-new', {"order": order })
-          } else if (order.note_attributes.length === 14) {
-            order.orderNotes.date = moment(order.orderNotes.date).format('M/D/YY')
-            order.orderNotes.card_note = nl2br(order.orderNotes.card_note);
-            order.closed_at = moment(order.closed_at).format('M/D/YY')
-            order.delivery_day = moment(order.orderNotes.date).format('dddd')
-            // console.log(moment(order.orderNotes.date).format('dddd'))
-            order.staff = staff.name;
-            order.orderNotes.wire_out_location = nl2br(order.orderNotes.wire_out_location);
-            // console.log(order.orderNotes)
-            res.render('wire-out', {"order": order })
-          } else {
-            order.processed_at = moment(order.processed_at).format('M/D/YY')
-            res.render('delivery-missing', {"order": order })
-          }
-        }
+        //  if (staff === null) {
+        //    console.log(staff)
+        //     if (order.note_attributes.length === 11 || order.note_attributes.length === 10) {
+        //
+        //       console.log(order.orderNotes.pickup_date)
+        //       console.log(moment(order.orderNotes.pickup_date, 'YYYY/MM/DD').format('dddd'))
+        //       order.note = nl2br(order.note);
+        //       order.created_at = moment(order.created_at).format('M/D/YY')
+        //       order.orderNotes.delivery_date = moment(order.orderNotes.pickup_date).format('M/D/YY')
+        //       order.pickup_day = moment(order.orderNotes.pickup_date, 'YYYY/MM/DD').format('dddd')
+        //
+        //      res.render('web2-new', {"order": order })
+        //    // } else if (order.note_attributes.length === 5 || order.note_attributes.length === 6) {
+        //    //
+        //    //
+        //  } else if (order.note_attributes.length === 5 || order.note_attributes.length === 6 || order.note_attributes.length === 7 || order.note_attributes.length === 8 || order.note_attributes.length === 9) {
+        //      if (order.orderNotes.checkout_method === 'delivery') {
+        //        order.note = nl2br(order.note);
+        //         order.processed_at = moment(order.processed_at).format('M/D/YY')
+        //          order.orderNotes.delivery_date = moment(order.orderNotes.delivery_date).format('M/D/YY')
+        //          order.delivery_day = moment(order.orderNotes.delivery_date).format('dddd')
+        //         res.render('web-new', {"order": order })
+        //      } else {
+        //        order.note_attributes[6].value = nl2br(order.note_attributes[6].value);
+        //        order.orderNotes.date = moment(order.orderNotes.date).format('M/D/YY')
+        //        order.closed_at = moment(order.closed_at).format('M/D/YY')
+        //        order.delivery_day = moment(order.orderNotes.date).format('dddd')
+        //        order.staff = "Unknown";
+        //        res.render('instore-new', {"order": order })
+        //      }
+        //
+        //    } else if (order.note_attributes.length === 13 || order.note_attributes.length === 12) {
+        //      order.orderNotes.date = moment(order.orderNotes.date).format('M/D/YY')
+        //      order.orderNotes.card_note = nl2br(order.orderNotes.card_note);
+        //      order.delivery_day = moment(order.orderNotes.date).format('dddd')
+        //      order.closed_at = moment(order.closed_at).format('M/D/YY')
+        //      order.staff = "Unknown";
+        //      // console.log(order.note_attributes[9].value)
+        //      res.render('delivery-new', {"order": order })
+        //    } else if (order.note_attributes.length === 14) {
+        //      order.orderNotes.date = moment(order.orderNotes.date).format('M/D/YY')
+        //      order.orderNotes.card_note = nl2br(order.orderNotes.card_note);
+        //      order.delivery_day = moment(order.orderNotes.date).format('dddd')
+        //      order.closed_at = moment(order.closed_at).format('M/D/YY')
+        //      order.staff = "Unknown";
+        //      order.orderNotes.wire_out_location = nl2br(order.orderNotes.wire_out_location);
+        //      // console.log(order.orderNotes)
+        //      res.render('wire-out', {"order": order })
+        //    } else {
+        //      order.processed_at = moment(order.processed_at).format('M/D/YY')
+        //      res.render('delivery-missing', {"order": order })
+        //    }
+        //  } else {
+        //   console.log(staff)
+        //   if (order.note_attributes.length === 11 || order.note_attributes.length === 10) {
+        //
+        //       order.note = nl2br(order.note);
+        //       order.created_at = moment(order.created_at).format('M/D/YY')
+        //       order.orderNotes.delivery_date = moment(order.orderNotes.delivery_date).format('M/D/YY')
+        //       order.delivery_day = moment(order.orderNotes.delivery_date).format('dddd')
+        //
+        //      res.render('web2-new', {"order": order })
+        //    // } else if (order.note_attributes.length === 5 || order.note_attributes.length === 6) {
+        //    //
+        //    //   order.note = nl2br(order.note);
+        //    //   order.processed_at = moment(order.processed_at).format('M/D/YY')
+        //    //    order.orderNotes.delivery_date = moment(order.orderNotes.delivery_date).format('M/D/YY')
+        //    //    order.delivery_day = moment(order.orderNotes.delivery_date).format('dddd')
+        //    //
+        //    //   res.render('web-new', {"order": order })
+        //  } else if (order.note_attributes.length === 5 || order.note_attributes.length === 6 || order.note_attributes.length === 7 || order.note_attributes.length === 8 || order.note_attributes.length === 9) {
+        //       if (order.orderNotes.checkout_method === 'delivery') {
+        //         order.note = nl2br(order.note);
+        //           order.processed_at = moment(order.processed_at).format('M/D/YY')
+        //            order.orderNotes.delivery_date = moment(order.orderNotes.delivery_date).format('M/D/YY')
+        //            order.delivery_day = moment(order.orderNotes.delivery_date).format('dddd')
+        //
+        //           res.render('web-new', {"order": order })
+        //       } else {
+        //         console.log(order.orderNotes.date)
+        //         console.log(moment().format('dddd'))
+        //         order.orderNotes.card_note = nl2br(order.orderNotes.card_note);
+        //         order.orderNotes.date = moment(order.orderNotes.date).format('M/D/YY')
+        //         order.closed_at = moment(order.closed_at).format('M/D/YY')
+        //         order.delivery_day = moment(order.orderNotes.date).format('dddd')
+        //         order.staff = staff.name;
+        //         res.render('instore-new', {"order": order })
+        //       }
+        //
+        //
+        //   } else if (order.note_attributes.length === 13 || order.note_attributes.length === 12) {
+        //     order.orderNotes.date = moment(order.orderNotes.date).format('M/D/YY')
+        //     order.orderNotes.card_note = nl2br(order.orderNotes.card_note);
+        //     order.closed_at = moment(order.closed_at).format('M/D/YY')
+        //     order.delivery_day = moment(order.orderNotes.date).format('dddd')
+        //     // console.log(moment(order.orderNotes.date).format('dddd'))
+        //     order.staff = staff.name;
+        //     // console.log(order.orderNotes.date)
+        //     res.render('delivery-new', {"order": order })
+        //   } else if (order.note_attributes.length === 14) {
+        //     order.orderNotes.date = moment(order.orderNotes.date).format('M/D/YY')
+        //     order.orderNotes.card_note = nl2br(order.orderNotes.card_note);
+        //     order.closed_at = moment(order.closed_at).format('M/D/YY')
+        //     order.delivery_day = moment(order.orderNotes.date).format('dddd')
+        //     // console.log(moment(order.orderNotes.date).format('dddd'))
+        //     order.staff = staff.name;
+        //     order.orderNotes.wire_out_location = nl2br(order.orderNotes.wire_out_location);
+        //     // console.log(order.orderNotes)
+        //     res.render('wire-out', {"order": order })
+        //   } else {
+        //     order.processed_at = moment(order.processed_at).format('M/D/YY')
+        //     res.render('delivery-missing', {"order": order })
+        //   }
+        // }
           // var html = fs.readFileSync('./test/businesscard.html', 'utf8');
       })
   } )
