@@ -70,7 +70,7 @@
         <% for (i=0;i < order.line_items.length; i++) { %>
           <div class="line_item" style="width: 100%">
             <div style="width: 100%; float: left; text-align: left;"><%= order.line_items[i].quantity %> - <%= order.line_items[i].name %></div>
-            <div style="width: 50%; float: left; text-align: left;">Flower Requests: <%= order.line_items[i].properties[0].value %></br>Color Palatte: <%= order.line_items[i].properties[1].value %></div>
+            <div style="width: 50%; float: left; text-align: left;"><b>Flower Requests:</b> <%= order.line_items[i].properties[0].value %></br><b>Color Palatte:</b> <%= order.line_items[i].properties[1].value %></div>
             <div style="width: 50%; float: left; text-align: right;"><%= order.line_items[i].price %></div>
           </div>
         <% } %>
