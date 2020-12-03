@@ -109,7 +109,7 @@ router.get('/order/pdf/:id', function(req, res, next) {
         //    // } else if (order.note_attributes.length === 5 || order.note_attributes.length === 6) {
         //    //
         //    //
-         } else if (order.note_attributes.length === 4 || order.note_attributes.length === 5 || order.note_attributes.length === 6 || order.note_attributes.length === 7 || order.note_attributes.length === 8) {
+      } else if (order.note_attributes.length === 4 || order.note_attributes.length === 5 || order.note_attributes.length === 6 || order.note_attributes.length === 7 || order.note_attributes.length === 8 || order.note_attributes.length === 9) {
              if (order.orderNotes.checkout_method === 'delivery') {
                order.note = nl2br(order.note);
                 order.processed_at = moment(order.processed_at).format('M/D/YY')
