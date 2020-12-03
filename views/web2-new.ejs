@@ -69,7 +69,8 @@
     <div style="width: 100%; float: left;">
         <% for (i=0;i < order.line_items.length; i++) { %>
           <div class="line_item" style="width: 100%">
-            <div style="width: 50%; float: left; text-align: left;"><%= order.line_items[i].quantity %> - <%= order.line_items[i].title %></div>
+            <div style="width: 50%; float: left; text-align: left;"><%= order.line_items[i].quantity %> - <%= order.line_items[i].name %></div>
+            <%= order.line_items[i].properties %>
             <div style="width: 50%; float: left; text-align: right;"><%= order.line_items[i].price %></div>
           </div>
         <% } %>
@@ -118,15 +119,15 @@
         </br>
         <% for (i=0;i < order.line_items.length; i++) { %>
           <div class="line_item" style="width: 100%">
-            <div style="width: 100%; float: left; text-align: left;"><%= order.line_items[i].quantity %> - <%= order.line_items[i].title %></div>
+            <div style="width: 100%; float: left; text-align: left;"><%= order.line_items[i].quantity %> - <%= order.line_items[i].name %></div>
           </div>
         <% } %>
         </br>
-        <div><%= order.shipping_address.recipient %></div>
-        <div><%= order.shipping_address.address1 %></div>
-        <div><%= order.shipping_address.address2 %></div>
-        <div><%= order.shipping_address.city %>, <%= order.shipping_address.state %> <%= order.shipping_address.zip %></div>
-        <div><%= order.shipping_address.phone %></div>
+        <div><%= order.shipping_address.name %></div>
+        <div><%= order.orderNotes.pickup_location_address_line_1 %></div>
+        <div><%= order.orderNotes.pickup_location_address_line_2 %></div>
+        <div><%= order.orderNotes.pickup_location_city %>, <%= order.orderNotes.pickup_location_region %> <%= order.orderNotes.pickup_location_postal_code %></div>
+        <div><%= order.orderNotes.phone %></div>
       </div>
 
       <div class="half" id="message_holder" style="transform: rotate(90deg);
