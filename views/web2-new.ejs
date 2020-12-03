@@ -113,7 +113,6 @@
         <div>Order #: <%= order.order_number %></div>
         <div>Delivery Date: <%= order.orderNotes.delivery_date %></div>
         <div>Delivery Day: <%= order.pickup_day %></div>
-        <div>Delivery Time: <%= order.orderNotes.pickup_time %></div>
         <div>Card Message:</br>
           <%- order.orderNotes.note %></div>
         </br>
@@ -124,10 +123,10 @@
         <% } %>
         </br>
         <div><%= order.shipping_address.recipient %></div>
-        <div><%= order.orderNotes.pickup_location_address_line_1 %></div>
-        <div><%= order.orderNotes.pickup_location_address_line_2 %></div>
-        <div><%= order.orderNotes.pickup_location_city %>, <%= order.orderNotes.pickup_location_state %> <%= order.orderNotes.pickup_location_zip %></div>
-        <div><%= order.orderNotes.phone %></div>
+        <div><%= order.shipping_address.address1 %></div>
+        <div><%= order.shipping_address.address2 %></div>
+        <div><%= order.shipping_address.city %>, <%= order.shipping_address.state %> <%= order.shipping_address.zip %></div>
+        <div><%= order.shipping_address.phone %></div>
       </div>
 
       <div class="half" id="message_holder" style="transform: rotate(90deg);
