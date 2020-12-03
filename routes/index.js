@@ -98,14 +98,14 @@ router.get('/order/pdf/:id', function(req, res, next) {
         //    console.log(staff)
             if (order.note_attributes.length === 11 || order.note_attributes.length === 10) {
         //
-        //       console.log(order.orderNotes.pickup_date)
-        //       console.log(moment(order.orderNotes.pickup_date, 'YYYY/MM/DD').format('dddd'))
-        //       order.note = nl2br(order.note);
-        //       order.created_at = moment(order.created_at).format('M/D/YY')
-        //       order.orderNotes.delivery_date = moment(order.orderNotes.pickup_date).format('M/D/YY')
-        //       order.pickup_day = moment(order.orderNotes.pickup_date, 'YYYY/MM/DD').format('dddd')
-        //
-        //      res.render('web2-new', {"order": order })
+              console.log(order.orderNotes.pickup_date)
+              console.log(moment(order.orderNotes.pickup_date, 'YYYY/MM/DD').format('dddd'))
+              order.note = nl2br(order.note);
+              order.created_at = moment(order.created_at).format('M/D/YY')
+              order.orderNotes.delivery_date = moment(order.orderNotes.pickup_date).format('M/D/YY')
+              order.pickup_day = moment(order.orderNotes.pickup_date, 'YYYY/MM/DD').format('dddd')
+
+             res.render('web2-new', {"order": order })
         //    // } else if (order.note_attributes.length === 5 || order.note_attributes.length === 6) {
         //    //
         //    //
@@ -151,12 +151,12 @@ router.get('/order/pdf/:id', function(req, res, next) {
         //   console.log(staff)
           if (order.note_attributes.length === 11 || order.note_attributes.length === 10) {
         //
-        //       order.note = nl2br(order.note);
-        //       order.created_at = moment(order.created_at).format('M/D/YY')
-        //       order.orderNotes.delivery_date = moment(order.orderNotes.delivery_date).format('M/D/YY')
-        //       order.delivery_day = moment(order.orderNotes.delivery_date).format('dddd')
-        //
-        //      res.render('web2-new', {"order": order })
+              order.note = nl2br(order.note);
+              order.created_at = moment(order.created_at).format('M/D/YY')
+              order.orderNotes.delivery_date = moment(order.orderNotes.delivery_date).format('M/D/YY')
+              order.delivery_day = moment(order.orderNotes.delivery_date).format('dddd')
+
+             res.render('web2-new', {"order": order })
            // } else if (order.note_attributes.length === 4 || order.note_attributes.length === 5 || order.note_attributes.length === 6) {
         //    //
              // order.note = nl2br(order.note);
