@@ -123,10 +123,10 @@
           </div>
         <% } %>
         </br>
-        <div><%= order.orderNotes.recipient %></div>
-        <div><%= order.orderNotes.address_1 %></div>
-        <div><%= order.orderNotes.address_2 %></div>
-        <div><%= order.orderNotes.city %>, <%= order.orderNotes.state %> <%= order.orderNotes.zip %></div>
+        <div><%= order.shipping_address.recipient %></div>
+        <div><%= order.orderNotes.pickup_location_address_line_1 %></div>
+        <div><%= order.orderNotes.pickup_location_address_line_2 %></div>
+        <div><%= order.orderNotes.pickup_location_city %>, <%= order.orderNotes.pickup_location_state %> <%= order.orderNotes.pickup_location_zip %></div>
         <div><%= order.orderNotes.phone %></div>
       </div>
 
