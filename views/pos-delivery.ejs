@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <div id="pdf" class="holder" style="width: 1275px; height: 2100px;
+    /* background-image: url('/images/background.jpg'); */
+    background-size: cover;background-position: center;">
+      <div id="order_id" data-id="<%= order._id %>" style="display: none;"></div>
+      <div class="half" id="section_one" style="transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    position: absolute;
+    top: 300px;
+    right: 113px;
+    width: 500px;
+    height: 200px;
+    text-align: center;
+    display: table;
+    font-size: 20px;
+    line-height: 26px;">
+        <div>To: <%= order.shipping_address.first_name %> <%= order.shipping_address.last_name %></div>
+        <div>****  Delivery  ****</div>
+        <div><%= order.shipping_address.address1 %>, <%= order.shipping_address.address2 %></div>
+        <div><%= order.shipping_address.city %>, <%= order.shipping_address.state %> <%= order.shipping_address.zip %></div>
+        <div>Phone: <%= order.shipping_address.phone %></div>
+        <div>Order #: <%= order.order_number %></div>
+      </div>
+      <div class="half" id="section_two" style="    transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    position: absolute;
+    top: 250px;
+    right: 500px;
+    width: 1000px;
+    height: 600px;
+    text-align: center;
+    /* display: table; */
+    font-size: 22px;
+    line-height: 26px;
+    text-align: left;">
+    <div class="line_item" style="width: 100%">
+      <% if (order.financial_status === "partially_paid" || order.financial_status === "pending") { %>
+      <div style="width: 100%; float: left; text-align: left; color: red;font-size: 28px;line-height: 36px;">UNPAID</div>
+      <% } else { %>
+      <div style="width: 100%; float: left; text-align: left; color: green;font-size: 28px;line-height: 36px;">PAID</div>
+      <% } %>
+      <div style="width: 50%; float: left; text-align: left;">ONLINE - Delivery</div><div style="width: 50%; float: left; text-align: right;">Order #: <%= order.order_number %></div>
+      <div style="width: 100%; float: left; text-align: left; border-bottom: 1px solid black;margin-top:10px;margin-bottom: 10px;"></div>
+      <div style="width: 50%; float: left; text-align: left;">
+        <div><%= order.shipping_address.name %></div>
+        <div><%= order.shipping_address.address1 %> - <%= order.shipping_address.address2 %></div>
+        <div><%= order.shipping_address.city %>, <%= order.shipping_address.state %> <%= order.shipping_address.zip %></div>
+        <div><%= order.shipping_address.phone %></div>
+        </br>
+        Order Taken By:</br>
+        Online at <%= order.created_at %>
+      </div>
+      <div style="width: 50%; float: left; text-align: right;">
+        Delivery: <%= order.delivery_day %> - <%= order.orderNotes.delivery_date %> <% if (order.orderNotes.delivery_time) {%></br>Time: <%= order.orderNotes.delivery_time.replace(/;/g, ':') %><% } %></br>
+        <div style="width: 100%; float: left; text-align: left; border-bottom: 1px solid black;margin-top:10px;margin-bottom: 10px;"></div>
+        Card Message: </br><%- order.orderNotes.card_note %></br>
+      </div>
+      <div style="width: 100%; float: left; text-align: left; border-bottom: 1px solid black;margin-top:10px;margin-bottom: 10px;"></div>
+    </div>
+    <div class="line_item" style="width: 100%">
+      <div style="width: 100%; float: left; text-align: left;">Flower Notes: <%= order.orderNotes.colors %></div>
+    </div>
+    <div style="width: 100%; float: left;">
+        <% for (i=0;i < order.line_items.length; i++) { %>
+          <div class="line_item" style="width: 100%">
+            <div style="width: 50%; float: left; text-align: left;"><%= order.line_items[i].quantity %> - <%= order.line_items[i].name %></div>
+            <div style="width: 50%; float: left; text-align: right;"><%= order.line_items[i].price %></div>
+          </div>
+        <% } %>
+        <div style="width: 100%; float: left; text-align: left;"><b>Flower Requests:</b> <%= order.orderNotes.flower_request %></br><b>Color Palatte:</b> <%= order.orderNotes.color_palatte %></div>
+
+        <div class="total" style="width: 100%; text-align:right;">SUBTOTAL:   <%= order.subtotal_price %></div>
+        <div class="total" style="width: 100%; text-align:right;">TAX:   <%= order.total_tax %></div>
+        <div class="total" style="width: 100%; text-align:right;">TOTAL:   <%= order.total_price %></div>
+      </div>
+      <div style="width: 100%; float: left; text-align: left; border-bottom: 1px solid black;margin-top:10px;margin-bottom: 10px;"></div>
+      <div style="width: 50%; float: left; text-align: left; margin-bottom: 20px"><% if (order.gateway == 'shopify_payments') {%>Credit Card<% } else { %><%=order.gateway%> <%} %></div>
+      <div style="width: 100%; float: left;">
+      <% if (order.customer) { %>
+            <div>ID:<%= order.customer.id %></div>
+            <div><%= order.customer.phone %></div>
+            <% } %>
+
+          </div>
+    </div>
+    <div class="half" id="section_two" style="    transform: rotate(90deg);
+  -webkit-transform: rotate(90deg);
+  position: absolute;
+  top: 1550px;
+  right: 700px;
+  width: 500px;
+  height: 600px;
+  text-align: center;
+  /* display: table; */
+  font-size: 22px;
+  line-height: 26px;
+  text-align: left;">
+  <% if (order.financial_status === "partially_paid" || order.financial_status === "pending") { %>
+  <div style="color: red;font-size: 28px;line-height: 36px;">UNPAID</div>
+  <% } else { %>
+    <div style="color: green;font-size: 28px;line-height: 36px;">PAID</div>
+  <% } %>
+        <div>****  Delivery  ****</div>
+        <div>Order #: <%= order.order_number %></div>
+        <div>Delivery Date: <%= order.orderNotes.delivery_date %></div>
+        <div>Delivery Day: <%= order.delivery_day %></div>
+        <div>Card Message:</br>
+          <%- order.orderNotes.card_note %></div>
+        </br></br>
+        <% for (i=0;i < order.line_items.length; i++) { %>
+          <div class="line_item" style="width: 100%">
+            <div style="width: 100%; float: left; text-align: left;"><%= order.line_items[i].quantity %> - <%= order.line_items[i].name %></div>
+          </div>
+        <% } %>
+        <div style="width: 100%; float: left; text-align: left;"><b>Flower Requests:</b> <%= order.orderNotes.flower_request %></br><b>Color Palatte:</b> <%= order.orderNotes.color_palatte %></div>
+
+        </br></br>
+        <div><%= order.shipping_address.name %></div>
+        <div><%= order.shipping_address.address1 %> - <%= order.shipping_address.address2 %></div>
+        <div><%= order.shipping_address.city %>, <%= order.shipping_address.state %> <%= order.shipping_address.zip %></div>
+        <div><%= order.shipping_address.phone %></div>
+      </div>
+
+      <div class="half" id="message_holder" style="transform: rotate(90deg);
+      -webkit-transform: rotate(90deg);
+      position: absolute;
+          top: 1775px;
+      right: 0px;
+      width: 500px;
+      height: 200px;
+      text-align: center;
+      display: table;">
+      <div id="message" style="display: table-cell;
+      vertical-align: middle;
+      text-align: center;
+      width: 100%;
+      height: 100%;font-size: 24px; line-height: 28px;"><%- order.orderNotes.card_note %></div>
+      </div>
+    </div>
+</body>
+
+</html>

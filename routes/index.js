@@ -95,90 +95,93 @@ router.get('/order/pdf/:id', function(req, res, next) {
     staffDB.findOne({"user_id": order.user_id.toString()}, {}, function(err, staff) {
       console.log(order.orderNotes)
          if (staff === null) {
-        //    console.log(staff)
-            if (order.note_attributes.length === 11 || order.note_attributes.length === 10) {
-
-              console.log(order.orderNotes.pickup_date)
-              console.log(moment(order.orderNotes.pickup_date, 'YYYY/MM/DD').format('dddd'))
-              order.note = nl2br(order.note);
-              order.created_at = moment(order.created_at).format('M/D/YY')
-              order.orderNotes.delivery_date = moment(order.orderNotes.pickup_date).format('M/D/YY')
-              order.pickup_day = moment(order.orderNotes.pickup_date, 'YYYY/MM/DD').format('dddd')
-
-             res.render('web2-new', {"order": order })
-      } else if (order.note_attributes.length === 4 || order.note_attributes.length === 5 || order.note_attributes.length === 6 || order.note_attributes.length === 7 || order.note_attributes.length === 8 || order.note_attributes.length === 9) {
-             if (order.orderNotes.checkout_method === 'delivery') {
+           if (order.source_name === 'web') {
+             if (order.orderNotes.checkout_method === "delivery") {
                order.note = nl2br(order.note);
-                order.processed_at = moment(order.processed_at).format('M/D/YY')
-                 order.orderNotes.delivery_date = moment(order.orderNotes.delivery_date).format('M/D/YY')
-                 order.delivery_day = moment(order.orderNotes.delivery_date).format('dddd')
-                 console.log(order)
-                res.render('web-new', {"order": order })
+               order.processed_at = moment(order.processed_at).format('M/D/YY')
+               order.orderNotes.delivery_date = moment(order.orderNotes.delivery_date).format('M/D/YY')
+               order.delivery_day = moment(order.orderNotes.delivery_date).format('dddd')
+               order.staff = 'online';
+               res.render('web-delivery', {"order": order })
+
+             } else if (order.orderNotes.checkout_method === "pickup") {
+               order.note = nl2br(order.note);
+               order.created_at = moment(order.created_at).format('M/D/YY')
+               order.orderNotes.pickup_date = moment(order.orderNotes.pickup_date).format('M/D/YY')
+               order.pickup_day = moment(order.orderNotes.pickup_date, 'YYYY/MM/DD').format('dddd')
+               order.staff = 'online';
+               res.render('web-pickup', {"order": order })
              } else {
-               order.note_attributes[6].value = nl2br(order.note_attributes[6].value);
+             }
+
+           } else if (order.source_name === 'pos') {
+
+             if (order.orderNotes.checkout_method === "delivery") {
+               order.orderNotes.date = moment(order.orderNotes.date).format('M/D/YY')
+               order.orderNotes.card_note = nl2br(order.orderNotes.card_note);
+               order.delivery_day = moment(order.orderNotes.date).format('dddd')
+               order.closed_at = moment(order.closed_at).format('M/D/YY')
+               order.staff = "Unknown";
+               res.render('pos-delivery', {"order": order })
+
+             } else if (order.orderNotes.checkout_method === "pickup") {
                order.orderNotes.date = moment(order.orderNotes.date).format('M/D/YY')
                order.closed_at = moment(order.closed_at).format('M/D/YY')
-               order.delivery_day = moment(order.orderNotes.date).format('dddd')
-               order.staff = "Unknown";
-               res.render('instore-new', {"order": order })
-             }
-      } else if (order.note_attributes.length === 15) {
-             order.orderNotes.date = moment(order.orderNotes.date).format('M/D/YY')
-             order.orderNotes.card_note = nl2br(order.orderNotes.card_note);
-             order.delivery_day = moment(order.orderNotes.date).format('dddd')
-             order.closed_at = moment(order.closed_at).format('M/D/YY')
-             order.staff = "Unknown";
-             // console.log(order.note_attributes[9].value)
-             res.render('delivery-new', {"order": order })
-          } else {
-        //      order.processed_at = moment(order.processed_at).format('M/D/YY')
-        //      res.render('delivery-missing', {"order": order })
-          }
-         } else {
-        //   console.log(staff)
-          if (order.note_attributes.length === 11 || order.note_attributes.length === 10) {
-        //
-              order.note = nl2br(order.note);
-              order.created_at = moment(order.created_at).format('M/D/YY')
-              order.orderNotes.delivery_date = moment(order.orderNotes.delivery_date).format('M/D/YY')
-              order.delivery_day = moment(order.orderNotes.delivery_date).format('dddd')
+               order.pickup_date = moment(order.orderNotes.pickup_date).format('M/D/YY')
+               order.pickup_day = moment(order.orderNotes.pickup_date).format('dddd')
+               order.staff = 'unknown';
+               res.render('pos-pickup', {"order": order })
 
-             res.render('web2-new', {"order": order })
-         } else if (order.note_attributes.length === 4 || order.note_attributes.length === 5 || order.note_attributes.length === 6 || order.note_attributes.length === 7 || order.note_attributes.length === 8 || order.note_attributes.length === 9) {
-              if (order.orderNotes.checkout_method === 'delivery') {
-                order.note = nl2br(order.note);
-                  order.processed_at = moment(order.processed_at).format('M/D/YY')
-                   order.orderNotes.delivery_date = moment(order.orderNotes.delivery_date).format('M/D/YY')
-                   order.delivery_day = moment(order.orderNotes.delivery_date).format('dddd')
-                   console.log(order)
-                  res.render('web-new', {"order": order })
-              } else {
-                console.log(order.orderNotes.date)
-                console.log(moment().format('dddd'))
-                order.orderNotes.card_note = nl2br(order.orderNotes.card_note);
-                order.orderNotes.date = moment(order.orderNotes.date).format('M/D/YY')
-                order.closed_at = moment(order.closed_at).format('M/D/YY')
-                order.delivery_day = moment(order.orderNotes.date).format('dddd')
-                order.staff = staff.name;
-                res.render('instore-new', {"order": order })
-              }
-        //
-        //
-      } else if (order.note_attributes.length === 15) {
-            order.orderNotes.date = moment(order.orderNotes.date).format('M/D/YY')
-            order.orderNotes.card_note = nl2br(order.orderNotes.card_note);
-            order.closed_at = moment(order.closed_at).format('M/D/YY')
-            order.delivery_day = moment(order.orderNotes.date).format('dddd')
-            // console.log(moment(order.orderNotes.date).format('dddd'))
-            order.staff = staff.name;
-            // console.log(order.orderNotes.date)
-            res.render('delivery-new', {"order": order })
-          } else {
-        //     order.processed_at = moment(order.processed_at).format('M/D/YY')
-        //     res.render('delivery-missing', {"order": order })
-          }
+             } else {
+
+             }
+           } else {
+           }
+
+         } else {
+
+           if (order.source_name === 'web') {
+             if (order.orderNotes.checkout_method === "delivery") {
+               order.note = nl2br(order.note);
+               order.processed_at = moment(order.processed_at).format('M/D/YY')
+               order.orderNotes.delivery_date = moment(order.orderNotes.delivery_date).format('M/D/YY')
+               order.delivery_day = moment(order.orderNotes.delivery_date).format('dddd')
+               order.staff = 'online';
+               res.render('web-delivery', {"order": order })
+
+             } else if (order.orderNotes.checkout_method === "pickup") {
+               order.note = nl2br(order.note);
+               order.created_at = moment(order.created_at).format('M/D/YY')
+               order.orderNotes.pickup_date = moment(order.orderNotes.pickup_date).format('M/D/YY')
+               order.pickup_day = moment(order.orderNotes.pickup_date, 'YYYY/MM/DD').format('dddd')
+               order.staff = 'online';
+               res.render('web-pickup', {"order": order })
+             } else {
+             }
+
+           } else if (order.source_name === 'pos') {
+
+             if (order.orderNotes.checkout_method === "delivery") {
+               order.orderNotes.date = moment(order.orderNotes.date).format('M/D/YY')
+               order.orderNotes.card_note = nl2br(order.orderNotes.card_note);
+               order.delivery_day = moment(order.orderNotes.date).format('dddd')
+               order.closed_at = moment(order.closed_at).format('M/D/YY')
+               order.staff = staff.name;
+               res.render('pos-delivery', {"order": order })
+
+             } else if (order.orderNotes.checkout_method === "pickup") {
+               order.orderNotes.date = moment(order.orderNotes.date).format('M/D/YY')
+               order.closed_at = moment(order.closed_at).format('M/D/YY')
+               order.pickup_date = moment(order.orderNotes.pickup_date).format('dddd')
+               order.staff = staff.name;
+               res.render('pos-pickup', {"order": order })
+
+             } else {
+
+             }
+           } else {
+           }
         }
-          // var html = fs.readFileSync('./test/businesscard.html', 'utf8');
       })
   } )
 })
