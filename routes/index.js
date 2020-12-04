@@ -115,12 +115,12 @@ router.get('/order/pdf/:id', function(req, res, next) {
                  console.log(order)
                 res.render('web-new', {"order": order })
              } else {
-        //        order.note_attributes[6].value = nl2br(order.note_attributes[6].value);
-        //        order.orderNotes.date = moment(order.orderNotes.date).format('M/D/YY')
-        //        order.closed_at = moment(order.closed_at).format('M/D/YY')
-        //        order.delivery_day = moment(order.orderNotes.date).format('dddd')
-        //        order.staff = "Unknown";
-        //        res.render('instore-new', {"order": order })
+               order.note_attributes[6].value = nl2br(order.note_attributes[6].value);
+               order.orderNotes.date = moment(order.orderNotes.date).format('M/D/YY')
+               order.closed_at = moment(order.closed_at).format('M/D/YY')
+               order.delivery_day = moment(order.orderNotes.date).format('dddd')
+               order.staff = "Unknown";
+               res.render('instore-new', {"order": order })
              }
       } else if (order.note_attributes.length === 15) {
              order.orderNotes.date = moment(order.orderNotes.date).format('M/D/YY')
@@ -153,14 +153,14 @@ router.get('/order/pdf/:id', function(req, res, next) {
                    console.log(order)
                   res.render('web-new', {"order": order })
               } else {
-        //         console.log(order.orderNotes.date)
-        //         console.log(moment().format('dddd'))
-        //         order.orderNotes.card_note = nl2br(order.orderNotes.card_note);
-        //         order.orderNotes.date = moment(order.orderNotes.date).format('M/D/YY')
-        //         order.closed_at = moment(order.closed_at).format('M/D/YY')
-        //         order.delivery_day = moment(order.orderNotes.date).format('dddd')
-        //         order.staff = staff.name;
-        //         res.render('instore-new', {"order": order })
+                console.log(order.orderNotes.date)
+                console.log(moment().format('dddd'))
+                order.orderNotes.card_note = nl2br(order.orderNotes.card_note);
+                order.orderNotes.date = moment(order.orderNotes.date).format('M/D/YY')
+                order.closed_at = moment(order.closed_at).format('M/D/YY')
+                order.delivery_day = moment(order.orderNotes.date).format('dddd')
+                order.staff = staff.name;
+                res.render('instore-new', {"order": order })
               }
         //
         //
