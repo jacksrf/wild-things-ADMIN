@@ -82,6 +82,8 @@
             <div style="width: 50%; float: left; text-align: right;"><%= order.line_items[i].price %></div>
           </div>
         <% } %>
+        <div style="width: 50%; float: left; text-align: left;"><b>Flower Requests:</b> <%= order.orderNotes.flower_request %></br><b>Color Palatte:</b> <%= order.orderNotes.color_palatte %></div>
+
         <div class="total" style="width: 100%; text-align:right;">SUBTOTAL:   <%= order.subtotal_price %></div>
         <div class="total" style="width: 100%; text-align:right;">TAX:   <%= order.total_tax %></div>
         <div class="total" style="width: 100%; text-align:right;">TOTAL:   <%= order.total_price %></div>
