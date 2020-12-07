@@ -78,7 +78,7 @@
             <div style="width: 50%; float: left; text-align: right;"><%= order.line_items[i].price %></div>
           </div>
         <% } %>
-        <div style="width: 100%; float: left; text-align: left;"><b>Flower Requests:</b> <%= order.orderNotes.flower_request %></br><b>Color Palatte:</b> <%= order.orderNotes.color_palatte %></div>
+        <div style="width: 100%; float: left; text-align: left;"><b><u>Flower Requests:</u></b> <%= order.orderNotes.flower_request %></br><b><u>Color Palatte:</u></b> <%= order.orderNotes.color_palatte %></div>
 
         <div class="total" style="width: 100%; text-align:right;">SUBTOTAL:   <%= order.subtotal_price %></div>
         <div class="total" style="width: 100%; text-align:right;">TAX:   <%= order.total_tax %></div>
@@ -115,7 +115,7 @@
         <div>Order #: <%= order.order_number %></div>
         <div>Delivery Date: <%= order.orderNotes.delivery_date %></div>
         <div>Delivery Day: <%= order.delivery_day %></div>
-        <div>Card Message:</br>
+        <div><u>Card Message:</u></br>
           <%- order.orderNotes.card_note %></div>
         </br></br>
         <% for (i=0;i < order.line_items.length; i++) { %>
@@ -123,7 +123,7 @@
             <div style="width: 100%; float: left; text-align: left;"><%= order.line_items[i].quantity %> - <%= order.line_items[i].name %></div>
           </div>
         <% } %>
-        <div style="width: 100%; float: left; text-align: left;"><b>Flower Requests:</b> <%= order.orderNotes.flower_request %></br><b>Color Palatte:</b> <%= order.orderNotes.color_palatte %></div>
+        <div style="width: 100%; float: left; text-align: left;"><b><u>Flower Requests:</u></b> <%= order.orderNotes.flower_request %></br><b><u>Color Palatte:</u></b> <%= order.orderNotes.color_palatte %></div>
 
         </br></br>
         <div><%= order.shipping_address.name %></div>
