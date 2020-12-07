@@ -98,6 +98,7 @@ router.get('/order/pdf/:id', function(req, res, next) {
            if (order.source_name === 'web') {
              if (order.orderNotes.checkout_method === "delivery") {
                order.note = nl2br(order.note);
+               order.created_at = moment(order.created_at).format('M/D/YY')
                order.processed_at = moment(order.processed_at).format('M/D/YY')
                order.orderNotes.delivery_date = moment(order.orderNotes.delivery_date).format('M/D/YY')
                order.delivery_day = moment(order.orderNotes.delivery_date).format('dddd')
@@ -117,6 +118,7 @@ router.get('/order/pdf/:id', function(req, res, next) {
            } else if (order.source_name === 'pos') {
 
              if (order.orderNotes.checkout_method === "delivery") {
+               order.created_at = moment(order.created_at).format('M/D/YY')
                order.orderNotes.date = moment(order.orderNotes.date).format('M/D/YY')
                order.orderNotes.card_note = nl2br(order.orderNotes.card_note);
                order.delivery_day = moment(order.orderNotes.date).format('dddd')
@@ -125,6 +127,7 @@ router.get('/order/pdf/:id', function(req, res, next) {
                res.render('pos-delivery', {"order": order })
 
              } else if (order.orderNotes.checkout_method === "pickup") {
+               order.created_at = moment(order.created_at).format('M/D/YY')
                order.orderNotes.date = moment(order.orderNotes.date).format('M/D/YY')
                order.closed_at = moment(order.closed_at).format('M/D/YY')
                order.pickup_date = moment(order.orderNotes.pickup_date).format('M/D/YY')
