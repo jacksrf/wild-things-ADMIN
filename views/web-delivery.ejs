@@ -90,12 +90,7 @@
       <% if (order.customer) { %>
             <div>ID:<%= order.customer.id %></div>
             <div><%= order.customer.first_name %> <%= order.customer.last_name %></div>
-            <% if (order.customer.default_address) { %>
-            <div><%= order.customer.default_address.address1 %></div>
-            <div><%= order.customer.default_address.address2 %></div>
-            <div><%= order.customer.default_address.city %>, <%= order.customer.default_address.province_code %> <%= order.customer.default_address.zip %></div>
-            <% } %>
-            <div><%= order.customer.phone %></div>
+          <div><%= order.customer.phone %></div>
             <% } %>
 
           </div>
