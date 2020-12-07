@@ -74,7 +74,7 @@
             <div style="width: 20%; float: left; text-align: right;"><%= order.line_items[i].price %></div>
           </div>
         <% } %>
-        <div style="width: 100%; float: left; text-align: left;"><b>Flower Requests:</b> <%= order.orderNotes.flower_request %></br><b>Color Palatte:</b> <%= order.orderNotes.color_palatte %></div>
+        <div style="width: 100%; float: left; text-align: left;"><b><u>Flower Requests:</u></b> <%= order.orderNotes.flower_request %></br><b><u>Color Palatte:</u></b> <%= order.orderNotes.color_palatte %></div>
 
         <div class="total" style="width: 100%; text-align:right;">SUBTOTAL:   <%= order.subtotal_price %></div>
         <div class="total" style="width: 100%; text-align:right;">TAX:   <%= order.total_tax %></div>
@@ -113,10 +113,10 @@
   <% } else { %>
     <div style="color: green;font-size: 28px;line-height: 36px;">PAID</div>
   <% } %>
-        <div>Order #: <%= order.order_number %></div>
-        <div>Pickup Date: <%= order.orderNotes.pickup_date %></div>
-        <div>Pickup Day: <%= order.pickup_day %></div>
-        <div>Card Message:</br>
+        <div><u>Order #:</u> <%= order.order_number %></div>
+        <div><u>Pickup Date:</u> <%= order.orderNotes.pickup_date %></div>
+        <div><u>Pickup Day:</u> <%= order.pickup_day %></div>
+        <div><u>Card Message:</u></br>
           <%- order.orderNotes.card_note %></div>
         </br>
         <% for (i=0;i < order.line_items.length; i++) { %>
@@ -124,7 +124,7 @@
             <div style="width: 100%; float: left; text-align: left;"><%= order.line_items[i].quantity %> - <%= order.line_items[i].name %></div>
           </div>
         <% } %>
-        <div style="width: 100%; float: left; text-align: left;"><b>Flower Requests:</b> <%= order.orderNotes.flower_request %></br><b>Color Palatte:</b> <%= order.orderNotes.color_palatte %></div>
+        <div style="width: 100%; float: left; text-align: left;"><b><u>Flower Requests:</u></b> <%= order.orderNotes.flower_request %></br><b><u>Color Palatte:</u></b> <%= order.orderNotes.color_palatte %></div>
 
       </div>
 
