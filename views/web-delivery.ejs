@@ -23,8 +23,8 @@
     height: 200px;
     text-align: center;
     display: table;
-    font-size: 20px;
-    line-height: 26px;">
+    font-size: 25px;
+    line-height: 31px;">
         <div>To: <%= order.shipping_address.first_name %> <%= order.shipping_address.last_name %></div>
         <div>****  Delivery  ****</div>
         <div><%= order.shipping_address.address1 %>, <%= order.shipping_address.address2 %></div>
@@ -126,10 +126,15 @@
           </div>
         <% } %>
         </br></br></br>
+        <div>DELIVERY ADDRESS:</div>
         <div><%= order.shipping_address.name %></div>
         <div><%= order.shipping_address.address1 %> - <%= order.shipping_address.address2 %></div>
         <div><%= order.shipping_address.city %>, <%= order.shipping_address.province_code %> <%= order.shipping_address.zip %></div>
         <div><%= order.shipping_address.phone %></div>
+        <br><br>
+        <div>SENDER INFO:</div>
+        <div><%= order.customer.first_name %> <%= order.customer.last_name %></div>
+        <div><%= order.customer.phone %></div>
       </div>
 
       <div class="half" id="message_holder" style="transform: rotate(90deg);
@@ -146,7 +151,8 @@
       text-align: center;
       width: 100%;
       padding: 5% 10%;
-      height: 100%;font-size: 24px; line-height: 28px;
+      height: 100%;font-size: 30px;
+      line-height: 35px;
           font-family: 'Neue-Haas-unica-w1g';
           font-weight: 300;"><%- order.note %></div>
       </div>
