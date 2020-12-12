@@ -120,6 +120,7 @@
           </div>
         <% } %>
         <div style="width: 100%; float: left; text-align: left;"><b><u>Flower Requests:</u></b> <%= order.orderNotes.flower_request %></br><b><u>Color Palatte:</u></b> <%= order.orderNotes.color_palatte %></div>
+        </br></br>
         <div>PICKUP PERSON INFO:</div>
         <div><%= order.customer.default_address.first_name %> <%= order.customer.default_address.last_name %></div>
         <div><%= order.customer.default_address.phone %></div>
