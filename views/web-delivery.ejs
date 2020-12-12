@@ -121,8 +121,8 @@
         </br></br>
         <% for (i=0;i < order.line_items.length; i++) { %>
           <div class="line_item" style="width: 100%">
-            <div style="width: 100%; float: left; text-align: left;"><%= order.line_items[i].quantity %> - <%= order.line_items[i].name %></div>
-            <div style="width: 100%; float: left; text-align: left;"><b><u>Flower Requests:</u></b> <%= order.line_items[i].properties[0].value %></br><b><u>Color Palatte:</u></b> <%= order.line_items[i].properties[1].value %></div>
+            <div style="text-align: left;"><%= order.line_items[i].quantity %> - <%= order.line_items[i].name %></div>
+            <div style="text-align: left;"><b><u>Flower Requests:</u></b> <%= order.line_items[i].properties[0].value %></br><b><u>Color Palatte:</u></b> <%= order.line_items[i].properties[1].value %></div>
           </div>
         <% } %>
         </br></br></br>
