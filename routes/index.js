@@ -93,7 +93,7 @@ router.get('/order/pdf/:id', function(req, res, next) {
     }
 
     staffDB.findOne({"user_id": order.user_id.toString()}, {}, function(err, staff) {
-      console.log(order.orderNotes)
+      console.log(order.source_name)
          if (staff === null) {
            if (order.source_name === 'web') {
              if (order.orderNotes.checkout_method === "delivery") {
@@ -115,7 +115,7 @@ router.get('/order/pdf/:id', function(req, res, next) {
              } else {
              }
 
-           } else if (order.source_name === 'pos') {
+           } else if (order.source_name === 'pos' || order.source_name === 'shopify_draft_order') {
 
              if (order.orderNotes.checkout_method === "delivery") {
                order.created_at = moment(order.created_at).format('M/D/YY')
