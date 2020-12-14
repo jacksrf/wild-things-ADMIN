@@ -27,7 +27,7 @@
     line-height: 31px;">
         <div>To: <%= order.customer.first_name %> <%= order.customer.last_name %></div>
         <div>**** In Store Pickup  ****</div>
-        <div>Phone: <%= order.customer.default_address.phone %></div>
+        <div>Phone: <%= order.customer.phone %></div>
         <div>Order #: <%= order.order_number %></div>
       </div>
       <div class="half" id="section_two" style="    transform: rotate(90deg);
@@ -52,7 +52,7 @@
       <div style="width: 100%; float: left; text-align: left; border-bottom: 1px solid black;margin-top:10px;margin-bottom: 10px;"></div>
       <div style="width: 50%; float: left; text-align: left;">
         <%= order.customer.first_name %> <%= order.customer.last_name %></br>
-        <%= order.customer.default_address.phone %></br>
+        <%= order.customer.phone %></br>
         </br>
         Order Taken By:</br>
         POS at <%= order.created_at %>
@@ -108,22 +108,23 @@
   <% } else { %>
     <div style="color: green;font-size: 28px;line-height: 36px;">PAID</div>
   <% } %>
-        <div><u>Order #:</u> <%= order.order_number %></div>
-        <div><u>Pickup Date:</u> <%= order.orderNotes.pickup_date %></div>
-        <div><u>Pickup Day:</u> <%= order.pickup_day %></div>
-        <div><u>Card Message:</u></br>
+        <div style="width: 50%; float: left;"><u>Order #:</u> <%= order.order_number %></div>
+        <div style="width: 50%; float: left;"><u>Pickup Date:</u> <%= order.orderNotes.pickup_date %></div>
+        <div style="width: 50%; float: left;"><u>Pickup Day:</u> <%= order.pickup_day %></div>
+        <div style="width: 100%; float: left;"><u>Card Message:</u></br>
           <%- order.orderNotes.card_note %></div>
-        </br>
+        <br>
         <% for (i=0;i < order.line_items.length; i++) { %>
-          <div class="line_item" style="width: 100%">
+          <div class="line_item" style="width: 100%; float: left;">
             <div style="text-align: left;"><%= order.line_items[i].quantity %> - <%= order.line_items[i].name %></div>
           </div>
         <% } %>
-        <div style="text-align: left;"><b><u>Flower Requests:</u></b> <%= order.orderNotes.flower_request %></br><b><u>Color Palatte:</u></b> <%= order.orderNotes.color_palatte %></div>
-        <br><br>
-        <div>PICKUP PERSON INFO:</div>
-        <div><%= order.customer.default_address.first_name %> <%= order.customer.default_address.last_name %></div>
-        <div><%= order.customer.default_address.phone %></div>
+        <div style="text-align: left;width: 100%; float: left;"><b><u>Flower Requests:</u></b> <%= order.orderNotes.flower_request %></br><b><u>Color Palatte:</u></b> <%= order.orderNotes.color_palatte %></div>
+        <br>
+        <div style="width: 100%; float: left; margin-top: 15px;"><b>PICKUP PERSON INFO:</b></div>
+        <div style="width: 100%; float: left;"><%= order.customer.first_name %> <%= order.customer.last_name %></div>
+        <div style="width: 100%; float: left;"><%= order.customer.phone %></div>
+        <div style="width: 100%; float: left;"><%= order.customer.email %></div>
       </div>
 
       <div class="half" id="message_holder" style="transform: rotate(90deg);

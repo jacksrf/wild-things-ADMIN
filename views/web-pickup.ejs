@@ -107,23 +107,23 @@
   <% } else { %>
     <div style="color: green;font-size: 28px;line-height: 36px;">PAID</div>
   <% } %>
-        <div><u>Order #:</u> <%= order.order_number %></div>
-        <div><u>Delivery Date:</u> <%= order.orderNotes.delivery_date %></div>
-        <div><u>Delivery Day:</u> <%= order.pickup_day %></div>
-        <div><u>Card Message:</u></br>
+        <div style="width: 50%; float: left;"><u>Order #:</u> <%= order.order_number %></div>
+        <div style="width: 50%; float: left;"><u>Delivery Date:</u> <%= order.orderNotes.delivery_date %></div>
+        <div style="width: 50%; float: left;"><u>Delivery Day:</u> <%= order.pickup_day %></div>
+        <div style="width: 100%; float: left;"><u>Card Message:</u></br>
           <%- order.orderNotes.note %></div>
-        </br>
+        <br>
         <% for (i=0;i < order.line_items.length; i++) { %>
-          <div class="line_item" style="width: 100%">
+          <div class="line_item" style="width: 100%; float: left;">
             <div style="text-align: left;"><%= order.line_items[i].quantity %> - <%= order.line_items[i].name %></div>
             <div style="text-align: left;"><b><u>Flower Requests:</u></b> <%= order.line_items[i].properties[0].value %></br><b><u>Color Palatte:</u></b> <%= order.line_items[i].properties[1].value %></div>
           </div>
         <% } %>
-        </br>
-        </br>
-        <div>PICKUP PERSON INFO:</div>
-        <div><%= order.customer.default_address.name %></div>
-        <div><%= order.orderNotes.phone %></div>
+        <br>
+        <div style="width: 100%; float: left; margin-top: 15px;"><b>PICKUP PERSON INFO:</b></div>
+        <div style="width: 100%; float: left;"><%= order.customer.name %></div>
+        <div style="width: 100%; float: left;"><%= order.orderNotes.phone %></div>
+        <div style="width: 100%; float: left;"><%= order.customer.email %></div>
       </div>
 
       <div class="half" id="message_holder" style="transform: rotate(90deg);
