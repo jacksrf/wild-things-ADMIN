@@ -121,7 +121,7 @@ router.get('/order/pdf/:id', function(req, res, next) {
                order.created_at = moment(order.created_at).format('M/D/YY')
                order.orderNotes.date = moment(order.orderNotes.date).format('M/D/YY')
                order.orderNotes.card_note = nl2br(order.orderNotes.card_note);
-               order.delivery_day = moment(order.orderNotes.date).format('dddd')
+               order.delivery_day = moment(order.orderNotes.delivery_date).format('dddd')
                order.closed_at = moment(order.closed_at).format('M/D/YY')
                order.staff = "Unknown";
                res.render('pos-delivery', {"order": order })
@@ -169,7 +169,7 @@ router.get('/order/pdf/:id', function(req, res, next) {
                order.created_at = moment(order.created_at).format('M/D/YY')
                order.orderNotes.date = moment(order.orderNotes.date).format('M/D/YY')
                order.orderNotes.card_note = nl2br(order.orderNotes.card_note);
-               order.delivery_day = moment(order.orderNotes.date).format('dddd')
+               order.delivery_day = moment(order.orderNotes.delivery_date).format('dddd')
                order.closed_at = moment(order.closed_at).format('M/D/YY')
                order.staff = staff.name;
                res.render('pos-delivery', {"order": order })
