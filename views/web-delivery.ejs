@@ -62,9 +62,13 @@
         Online at <%= order.created_at %>
       </div>
       <div style="width: 50%; float: left; text-align: right;">
-        Delivery: <%= order.delivery_day %> - <%= order.orderNotes.delivery_date %> <% if (order.orderNotes.delivery_time) {%></br>Time: <%= order.orderNotes.delivery_time.replace(/;/g, ':') %><% } %></br>
+        <b>Delivery: <%= order.delivery_day %> - <%= order.orderNotes.delivery_date %> <% if (order.orderNotes.delivery_time) {%></br>Time: <%= order.orderNotes.delivery_time.replace(/;/g, ':') %><% } %></b></br>
         <div style="width: 100%; float: left; text-align: left; border-bottom: 1px solid black;margin-top:10px;margin-bottom: 10px;"></div>
-        Card Message: </br><%- order.note %></br>
+        Card Message: </br><% if (order.orderNotes.card_note === undefined) { %>
+        <%- order.orderNotes.card_note %></br>
+        <% } else { %>
+        <%- order.note %></br>
+        <% } %>/br>
       </div>
       <div style="width: 100%; float: left; text-align: left; border-bottom: 1px solid black;margin-top:10px;margin-bottom: 10px;"></div>
     </div>
@@ -117,7 +121,11 @@
         <div style="width: 50%; float: left;"><u>Delivery Date:</u> <%= order.orderNotes.delivery_date %></div>
         <div style="width: 50%; float: left;"><u>Delivery Day:</u> <%= order.delivery_day %></div>
         <div style="width: 100%; float: left;"><u>Card Message:</u></br>
-          <%- order.note %></div>
+          <% if (order.orderNotes.card_note === undefined) { %>
+          <%- order.orderNotes.card_note %>
+          <% } else { %>
+          <%- order.note %>
+          <% } %></div>
         <br>
         <% for (i=0;i < order.line_items.length; i++) { %>
           <div class="line_item" style="width: 100%; float: left;">
@@ -155,7 +163,11 @@
       height: 100%;font-size: 30px;
       line-height: 35px;
           font-family: 'Neue-Haas-unica-w1g';
-          font-weight: 300;"><%- order.note %></div>
+          font-weight: 300;"><% if (order.orderNotes.card_note === undefined) { %>
+          <%- order.orderNotes.card_note %>
+          <% } else { %>
+          <%- order.note %>
+          <% } %></div>
       </div>
     </div>
 </body>
