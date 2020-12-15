@@ -29,7 +29,7 @@
         <div>****  Delivery  ****</div>
         <div><%= order.shipping_address.address1 %>, <%= order.shipping_address.address2 %></div>
         <div><%= order.shipping_address.city %>, <%= order.shipping_address.state %> <%= order.shipping_address.zip %></div>
-        <div>Phone: <%= order.shipping_address.phone %></div>
+        <div>Phone: <%= order.shipping_address.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %></div>
         <div>Order #: <%= order.order_number %></div>
       </div>
       <div class="half" id="section_two" style="    transform: rotate(90deg);
@@ -56,7 +56,7 @@
         <div><%= order.shipping_address.name %></div>
         <div><%= order.shipping_address.address1 %> - <%= order.shipping_address.address2 %></div>
         <div><%= order.shipping_address.city %>, <%= order.shipping_address.state %> <%= order.shipping_address.zip %></div>
-        <div><%= order.shipping_address.phone %></div>
+        <div><%= order.shipping_address.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %></div>
         </br>
         Order Taken By:</br>
         Online at <%= order.created_at %>
@@ -94,7 +94,7 @@
       <% if (order.customer) { %>
             <div>ID:<%= order.customer.id %></div>
             <div><%= order.customer.first_name %> <%= order.customer.last_name %></div>
-            <div><%= order.customer.phone %></div>
+            <div><%= order.customer.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %></div>
             <% } %>
 
           </div>
@@ -139,11 +139,11 @@
         <div style="width: 100%; float: left;"><%= order.shipping_address.name %></div>
         <div style="width: 100%; float: left;"><%= order.shipping_address.address1 %> - <%= order.shipping_address.address2 %></div>
         <div style="width: 100%; float: left;"><%= order.shipping_address.city %>, <%= order.shipping_address.state %> <%= order.shipping_address.zip %></div>
-        <div style="width: 100%; float: left;"><%= order.shipping_address.phone %></div>
+        <div style="width: 100%; float: left;"><%= order.shipping_address.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %></div>
         <br>
         <div style="width: 100%; float: left; margin-top: 15px;"><b>SENDER INFO:</b></div>
         <div style="width: 100%; float: left;"><%= order.customer.first_name %> <%= order.customer.last_name %></div>
-        <div style="width: 100%; float: left;"><%= order.customer.phone %></div>
+        <div style="width: 100%; float: left;"><%= order.customer.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %></div>
         <div style="width: 100%; float: left;"><%= order.customer.email %></div>
       </div>
 
