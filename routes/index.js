@@ -136,9 +136,22 @@ router.get('/order/pdf/:id', function(req, res, next) {
                res.render('pos-pickup', {"order": order })
 
              } else {
-
+               order.created_at = moment(order.created_at).format('M/D/YY')
+               order.orderNotes.date = moment(order.orderNotes.date).format('M/D/YY')
+               order.closed_at = moment(order.closed_at).format('M/D/YY')
+               order.pickup_date = moment(order.orderNotes.pickup_date).format('M/D/YY')
+               order.pickup_day = moment(order.orderNotes.pickup_date).format('dddd')
+               order.staff = 'unknown';
+               res.render('pos-pickup', {"order": order })
              }
            } else {
+             order.created_at = moment(order.created_at).format('M/D/YY')
+             order.orderNotes.date = moment(order.orderNotes.date).format('M/D/YY')
+             order.closed_at = moment(order.closed_at).format('M/D/YY')
+             order.pickup_date = moment(order.orderNotes.pickup_date).format('M/D/YY')
+             order.pickup_day = moment(order.orderNotes.pickup_date).format('dddd')
+             order.staff = 'unknown';
+             res.render('pos-pickup', {"order": order })
            }
 
          } else {
@@ -183,9 +196,22 @@ router.get('/order/pdf/:id', function(req, res, next) {
                res.render('pos-pickup', {"order": order })
 
              } else {
-
+               order.created_at = moment(order.created_at).format('M/D/YY')
+               order.orderNotes.date = moment(order.orderNotes.date).format('M/D/YY')
+               order.closed_at = moment(order.closed_at).format('M/D/YY')
+               order.pickup_date = moment(order.orderNotes.pickup_date).format('M/D/YY')
+               order.pickup_day = moment(order.orderNotes.pickup_date).format('dddd')
+               order.staff = 'unknown';
+               res.render('pos-pickup', {"order": order })
              }
            } else {
+             order.created_at = moment(order.created_at).format('M/D/YY')
+             order.orderNotes.date = moment(order.orderNotes.date).format('M/D/YY')
+             order.closed_at = moment(order.closed_at).format('M/D/YY')
+             order.pickup_date = moment(order.orderNotes.pickup_date).format('M/D/YY')
+             order.pickup_day = moment(order.orderNotes.pickup_date).format('dddd')
+             order.staff = 'unknown';
+             res.render('pos-pickup', {"order": order })
            }
         }
       })
