@@ -111,7 +111,7 @@
         <div style="width: 50%; float: left;"><u>Delivery Date:</u> <%= order.orderNotes.delivery_date %></div>
         <div style="width: 50%; float: left;"><u>Delivery Day:</u> <%= order.pickup_day %></div>
         <div style="width: 100%; float: left;"><u>Card Message:</u></br>
-          <% if (order.orderNotes.card_note === undefined) { %>
+          <% if (order.orderNotes.note === undefined || order.orderNotes.note === null) { %>
           <%- order.orderNotes.card_note %>
           <% } else { %>
           <%- order.note %>
@@ -148,7 +148,7 @@
       line-height: 35px;
           font-family: 'Neue-Haas-unica-w1g';
           font-weight: 300;">
-          <% if (order.orderNotes.card_note === undefined) { %>
+          <% if (order.orderNotes.card_note === undefined || order.orderNotes.card_note === null) { %>
           <%- order.orderNotes.card_note %>
           <% } else { %>
           <%- order.note %>
