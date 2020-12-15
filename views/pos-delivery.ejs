@@ -64,7 +64,7 @@
       <div style="width: 50%; float: left; text-align: right;">
         <b>Delivery: <%= order.delivery_day %> - <%= order.orderNotes.delivery_date %> <% if (order.orderNotes.delivery_time) {%></br>Time: <%= order.orderNotes.delivery_time.replace(/;/g, ':') %><% } %></b></br>
         <div style="width: 100%; float: left; text-align: left; border-bottom: 1px solid black;margin-top:10px;margin-bottom: 10px;"></div>
-        Card Message: </br><% if (order.orderNotes.note === undefined || order.orderNotes.note === null) { %>
+        Card Message: </br><% if (order.note === undefined || order.note === null) { %>
         <%- order.orderNotes.card_note %>
         <% } else { %>
         <%- order.note %>
@@ -121,7 +121,7 @@
         <div style="width: 50%; float: left;"><u>Delivery Date:</u> <%= order.orderNotes.delivery_date %></div>
         <div style="width: 50%; float: left;"><u>Delivery Day:</u> <%= order.delivery_day %></div>
         <div style="width: 100%; float: left;"><u>Card Message:</u></br>
-          <% if (order.orderNotes.note === undefined || order.orderNotes.note === null) { %>
+          <% if (order.note === undefined || order.note === null) { %>
           <%- order.orderNotes.card_note %>
           <% } else { %>
           <%- order.note %>
@@ -166,7 +166,7 @@
       line-height: 35px;
           font-family: 'Neue-Haas-unica-w1g';
           font-weight: 300;">
-          <% if (order.orderNotes.note === undefined || order.orderNotes.note === null) { %>
+          <% if (order.note === undefined || order.note === null) { %>
           <%- order.orderNotes.card_note %>
           <% } else { %>
           <%- order.note %>
