@@ -63,8 +63,9 @@
         Card Message: </br>
         <% if (order.orderNotes.card_note === undefined || order.orderNotes.card_note === null) { %>
         <%- order.note %>
-        <% } else { %>
+        <% } else if (order.note === undefined || order.note === null) { %>
         <%- order.orderNotes.card_note %>
+        <% } else {%>
         <% } %><br>
       </div>
       <div style="width: 100%; float: left; text-align: left; border-bottom: 1px solid black;margin-top:10px;margin-bottom: 10px;"></div>
@@ -119,8 +120,9 @@
         <div style="width: 100%; float: left;"><u>Card Message:</u></br>
           <% if (order.orderNotes.card_note === undefined || order.orderNotes.card_note === null) { %>
           <%- order.note %>
-          <% } else { %>
+          <% } else if (order.note === undefined || order.note === null) { %>
           <%- order.orderNotes.card_note %>
+          <% } else {%>
           <% } %></div>
         <br>
         <% for (i=0;i < order.line_items.length; i++) { %>
@@ -156,8 +158,9 @@
           font-weight: 300;">
           <% if (order.orderNotes.card_note === undefined || order.orderNotes.card_note === null) { %>
           <%- order.note %>
-          <% } else { %>
+          <% } else if (order.note === undefined || order.note === null) { %>
           <%- order.orderNotes.card_note %>
+          <% } else {%>
           <% } %>
         </div>
       </div>
