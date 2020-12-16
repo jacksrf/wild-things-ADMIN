@@ -96,8 +96,8 @@
       <% if (order.customer) { %>
             <div>ID:<%= order.customer.id %></div>
             <div><%= order.customer.first_name %> <%= order.customer.last_name %></div>
-          <div><% if (order.customer.phone) {%>
-            <%= order.customer.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
+          <div><% if (order.customer.default_address.phone) {%>
+            <%= order.customer.default_address.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
           <% } else {%>
             <%= order.billing_address.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
           <% } %></div>
@@ -149,8 +149,8 @@
         <br>
         <div style="width: 100%; float: left; margin-top: 15px;"><b>SENDER INFO:</b></div>
         <div style="width: 100%; float: left;"><%= order.customer.first_name %> <%= order.customer.last_name %></div>
-        <div style="width: 100%; float: left;"><% if (order.customer.phone) {%>
-          <%= order.customer.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
+        <div style="width: 100%; float: left;"><% if (order.customer.default_address.phone) {%>
+          <%= order.customer.default_address.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
         <% } else {%>
           <%= order.billing_address.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
         <% } %></div>
