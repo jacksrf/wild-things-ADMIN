@@ -61,11 +61,11 @@
         <b>Pickup: <%= order.pickup_day %> - <%= order.orderNotes.pickup_date %> <% if (order.orderNotes.pickup_time) {%></br>Time: <%= order.orderNotes.pickup_time %><% } %></b></br>
         <div style="width: 100%; float: left; text-align: left; border-bottom: 1px solid black;margin-top:10px;margin-bottom: 10px;"></div>
         Card Message: </br>
-        <% if (order.note === undefined || order.note === null) { %>
-        <%- order.orderNotes.card_note %></br>
+        <% if (order.orderNotes.card_note === undefined || order.orderNotes.card_note === null) { %>
+        <%- order.note %>
         <% } else { %>
-        <%- order.note %></br>
-        <% } %>
+        <%- order.orderNotes.card_note %>
+        <% } %><br>
       </div>
       <div style="width: 100%; float: left; text-align: left; border-bottom: 1px solid black;margin-top:10px;margin-bottom: 10px;"></div>
     </div>
@@ -117,10 +117,10 @@
         <div style="width: 50%; float: left;"><u>Pickup Date:</u> <%= order.orderNotes.pickup_date %></div>
         <div style="width: 50%; float: left;"><u>Pickup Day:</u> <%= order.pickup_day %></div>
         <div style="width: 100%; float: left;"><u>Card Message:</u></br>
-          <% if (order.note === undefined || order.note === null) { %>
-          <%- order.orderNotes.card_note %>
-          <% } else { %>
+          <% if (order.orderNotes.card_note === undefined || order.orderNotes.card_note === null) { %>
           <%- order.note %>
+          <% } else { %>
+          <%- order.orderNotes.card_note %>
           <% } %></div>
         <br>
         <% for (i=0;i < order.line_items.length; i++) { %>
@@ -154,10 +154,10 @@
       line-height: 35px;
           font-family: 'Neue-Haas-unica-w1g';
           font-weight: 300;">
-          <% if (order.note === undefined || order.note === null) { %>
-          <%- order.orderNotes.card_note %>
-          <% } else { %>
+          <% if (order.orderNotes.card_note === undefined || order.orderNotes.card_note === null) { %>
           <%- order.note %>
+          <% } else { %>
+          <%- order.orderNotes.card_note %>
           <% } %>
         </div>
       </div>

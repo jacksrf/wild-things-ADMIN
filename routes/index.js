@@ -124,6 +124,7 @@ router.get('/order/pdf/:id', function(req, res, next) {
                order.delivery_day = moment(order.orderNotes.delivery_date).format('dddd')
                order.closed_at = moment(order.closed_at).format('M/D/YY')
                order.staff = "Unknown";
+               // console.log(order.orderNotes.card_note)
                res.render('pos-delivery', {"order": order })
 
              } else if (order.orderNotes.checkout_method === "pickup") {
