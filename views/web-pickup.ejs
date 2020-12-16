@@ -71,7 +71,7 @@
         Card Message: </br>
         <% if (order.orderNotes.card_note) { %>
         <%- order.orderNotes.card_note %>
-        <% } else if (order.note) { %>
+        <% } else if (order.note && order.note != 'null') { %>
         <%- order.note %>
         <% } else {%>
         <% } %>
@@ -132,7 +132,7 @@
         <div style="width: 100%; float: left;"><u>Card Message:</u></br>
           <% if (order.orderNotes.card_note) { %>
           <%- order.orderNotes.card_note %>
-          <% } else if (order.note) { %>
+          <% } else if (order.note && order.note != 'null') { %>
           <%- order.note %>
           <% } else {%>
           <% } %></div>
@@ -170,7 +170,7 @@
           font-weight: 300;">
           <% if (order.orderNotes.card_note) { %>
           <%- order.orderNotes.card_note %>
-          <% } else if (order.note) { %>
+          <% } else if (order.note && order.note != 'null') { %>
           <%- order.note %>
           <% } else {%>
           <% } %>

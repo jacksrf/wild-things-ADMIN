@@ -29,7 +29,9 @@
         <div>****  Delivery  ****</div>
         <div><%= order.shipping_address.address1 %>, <%= order.shipping_address.address2 %></div>
         <div><%= order.shipping_address.city %>, <%= order.shipping_address.state %> <%= order.shipping_address.zip %></div>
+        <% if (order.shipping_address.phone) {%>
         <div>Phone: <%= order.shipping_address.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %></div>
+        <% } %>
         <div>Order #: <%= order.order_number %></div>
       </div>
       <div class="half" id="section_two" style="    transform: rotate(90deg);
@@ -65,9 +67,9 @@
         <b>Delivery: <%= order.delivery_day %> - <%= order.orderNotes.delivery_date %> <% if (order.orderNotes.delivery_time) {%></br>Time: <%= order.orderNotes.delivery_time.replace(/;/g, ':') %><% } %></b></br>
         <div style="width: 100%; float: left; text-align: left; border-bottom: 1px solid black;margin-top:10px;margin-bottom: 10px;"></div>
         Card Message: </br>
-        <% if (order.orderNotes.card_note != 'undefined' && order.orderNotes.card_note != 'null') { %>
+        <% if (order.orderNotes.card_note) { %>
         <%- order.orderNotes.card_note %>
-        <% } else if (order.note != 'undefined' && order.note != 'null') { %>
+        <% } else if (order.note && order.note != 'null') { %>
         <%- order.note %>
         <% } else {%>
         <% } %>
@@ -128,9 +130,9 @@
         <div style="width: 50%; float: left;"><u>Delivery Date:</u> <%= order.orderNotes.delivery_date %></div>
         <div style="width: 50%; float: left;"><u>Delivery Day:</u> <%= order.delivery_day %></div>
         <div style="width: 100%; float: left;"><u>Card Message:</u></br>
-          <% if (order.orderNotes.card_note != 'undefined' && order.orderNotes.card_note != 'null') { %>
+          <% if (order.orderNotes.card_note) { %>
           <%- order.orderNotes.card_note %>
-          <% } else if (order.note != 'undefined' && order.note != 'null') { %>
+          <% } else if (order.note && order.note != 'null') { %>
           <%- order.note %>
           <% } else {%>
           <% } %></div>
@@ -181,7 +183,7 @@
 
           <% if (order.orderNotes.card_note) { %>
           <%- order.orderNotes.card_note %>
-          <% } else if (order.note) { %>
+          <% } else if (order.note && order.note != 'null') { %>
           <%- order.note %>
           <% } else {%>
           <% } %>

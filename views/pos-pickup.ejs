@@ -29,8 +29,9 @@
         <div>**** In Store Pickup  ****</div>
         <div>Phone: <% if (order.customer.phone) {%>
           <%= order.customer.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
-        <% } else {%>
+        <% } else  if (order.billing_address) {%>
           <%= order.billing_address.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
+        <% } else { %>
         <% } %></div>
         <div>Order #: <%= order.order_number %></div>
       </div>
@@ -58,9 +59,10 @@
         <%= order.customer.first_name %> <%= order.customer.last_name %></br>
         <% if (order.customer.phone) {%>
           <%= order.customer.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
-        <% } else {%>
-          <%= order.billing_address.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
-        <% } %></br>
+          <% } else  if (order.billing_address) {%>
+            <%= order.billing_address.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
+          <% } else { %>
+          <% } %></br>
         </br>
         Order Taken By:</br>
         POS at <%= order.created_at %>
@@ -71,7 +73,7 @@
         Card Message: </br>
         <% if (order.orderNotes.card_note) { %>
         <%- order.orderNotes.card_note %>
-        <% } else if (order.note) { %>
+        <% } else if (order.note && order.note != 'null') { %>
         <%- order.note %>
         <% } else {%>
         <% } %><br>
@@ -102,9 +104,10 @@
             <div><%= order.customer.first_name %> <%= order.customer.last_name %></div>
             <div><% if (order.customer.phone) {%>
               <%= order.customer.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
-            <% } else {%>
-              <%= order.billing_address.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
-            <% } %></div>
+              <% } else  if (order.billing_address) {%>
+                <%= order.billing_address.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
+              <% } else { %>
+              <% } %></div>
             <% } %>
 
           </div>
@@ -132,7 +135,7 @@
         <div style="width: 100%; float: left;"><u>Card Message:</u></br>
           <% if (order.orderNotes.card_note) { %>
           <%- order.orderNotes.card_note %>
-          <% } else if (order.note) { %>
+          <% } else if (order.note && order.note != 'null') { %>
           <%- order.note %>
           <% } else {%>
           <% } %></div>
@@ -149,9 +152,10 @@
         <div style="width: 100%; float: left;">
           <% if (order.customer.phone) {%>
             <%= order.customer.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
-          <% } else {%>
-            <%= order.billing_address.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
-          <% } %>
+            <% } else  if (order.billing_address) {%>
+              <%= order.billing_address.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
+            <% } else { %>
+            <% } %>
 
         </div>
         <div style="width: 100%; float: left;"><%= order.customer.email %></div>
@@ -177,7 +181,7 @@
           font-weight: 300;">
           <% if (order.orderNotes.card_note) { %>
           <%- order.orderNotes.card_note %>
-          <% } else if (order.note) { %>
+          <% } else if (order.note && order.note != 'null') { %>
           <%- order.note %>
           <% } else {%>
           <% } %>
