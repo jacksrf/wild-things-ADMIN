@@ -65,12 +65,12 @@
         <b>Delivery: <%= order.delivery_day %> - <%= order.orderNotes.delivery_date %> <% if (order.orderNotes.delivery_time) {%></br>Time: <%= order.orderNotes.delivery_time.replace(/;/g, ':') %><% } %></b></br>
         <div style="width: 100%; float: left; text-align: left; border-bottom: 1px solid black;margin-top:10px;margin-bottom: 10px;"></div>
         Card Message: </br>
-          <% if (order.orderNotes.card_note != undefined && order.orderNotes.card_note != null && order.orderNotes.card_note != 'undefined') { %>
-          <%- order.orderNotes.card_note %>
-          <% } else if (order.note != undefined && order.note != null && order.note != 'undefined') { %>
-          <%- order.note %>
-          <% } else {%>
-          <% } %></br>
+        <% if (order.orderNotes.card_note) { %>
+        <%- order.orderNotes.card_note %>
+        <% } else if (order.note) { %>
+        <%- order.note %>
+        <% } else {%>
+        <% } %></br>
       </div>
       <div style="width: 100%; float: left; text-align: left; border-bottom: 1px solid black;margin-top:10px;margin-bottom: 10px;"></div>
     </div>
@@ -96,7 +96,11 @@
       <% if (order.customer) { %>
             <div>ID:<%= order.customer.id %></div>
             <div><%= order.customer.first_name %> <%= order.customer.last_name %></div>
-          <div><%= order.customer.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %></div>
+          <div><% if (order.customer.phone) {%>
+            <%= order.customer.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
+          <% } else {%>
+            <%= order.billing_address.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
+          <% } %></div>
             <% } %>
 
           </div>
@@ -123,9 +127,9 @@
         <div style="width: 50%; float: left;"><u>Delivery Date:</u> <%= order.orderNotes.delivery_date %></div>
         <div style="width: 50%; float: left;"><u>Delivery Day:</u> <%= order.delivery_day %></div>
         <div style="width: 100%; float: left;"><u>Card Message:</u></br>
-          <% if (order.orderNotes.card_note != 'undefined' && order.orderNotes.card_note != 'null') { %>
+          <% if (order.orderNotes.card_note) { %>
           <%- order.orderNotes.card_note %>
-          <% } else if (order.note != 'undefined' && order.note != 'null') { %>
+          <% } else if (order.note) { %>
           <%- order.note %>
           <% } else {%>
           <% } %></div>
@@ -145,7 +149,11 @@
         <br>
         <div style="width: 100%; float: left; margin-top: 15px;"><b>SENDER INFO:</b></div>
         <div style="width: 100%; float: left;"><%= order.customer.first_name %> <%= order.customer.last_name %></div>
-        <div style="width: 100%; float: left;"><%= order.customer.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %></div>
+        <div style="width: 100%; float: left;"><% if (order.customer.phone) {%>
+          <%= order.customer.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
+        <% } else {%>
+          <%= order.billing_address.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
+        <% } %></div>
         <div style="width: 100%; float: left;"><%= order.customer.email %></div>
       </div>
 
@@ -167,9 +175,9 @@
       line-height: 35px;
           font-family: 'Neue-Haas-unica-w1g';
           font-weight: 300;">
-          <% if (order.orderNotes.card_note != 'undefined' && order.orderNotes.card_note != 'null') { %>
+          <% if (order.orderNotes.card_note) { %>
           <%- order.orderNotes.card_note %>
-          <% } else if (order.note != 'undefined' && order.note != 'null') { %>
+          <% } else if (order.note) { %>
           <%- order.note %>
           <% } else {%>
           <% } %>
