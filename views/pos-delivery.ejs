@@ -30,9 +30,16 @@
         <div><%= order.shipping_address.address1 %>, <%= order.shipping_address.address2 %></div>
         <div><%= order.shipping_address.city %>, <%= order.shipping_address.state %> <%= order.shipping_address.zip %></div>
         <% if (order.shipping_address.phone) {%>
-        <div>Phone: <%= order.shipping_address.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %></div>
+        <div>Phone: <% if (order.customer.phone) { %>
+          <%= order.customer.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
+        <% } else if (order.billing_address.phone) { %>
+          <%= order.billing_address.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
+        <% } else if (order.customer.phone) { %>
+          <%= order.customer.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
+        <% } else { %>
+        <% } %></div>
         <% } %>
-        <div>Order #: <%= order.order_number %></div>
+        <div style="margin-top: 15px;"><span style="border: 2px solid black;padding: 0px 10px">Order #: <%= order.order_number %></span></div>
       </div>
       <div class="half" id="section_two" style="    transform: rotate(90deg);
     -webkit-transform: rotate(90deg);
@@ -52,7 +59,7 @@
       <% } else { %>
       <div style="width: 100%; float: left; text-align: left; color: green;font-size: 28px;line-height: 36px;">PAID</div>
       <% } %>
-      <div style="width: 50%; float: left; text-align: left;">ONLINE - Delivery</div><div style="width: 50%; float: left; text-align: right;font-size: 28px;line-height: 36px;">Order #: <%= order.order_number %></div>
+      <div style="width: 50%; float: left; text-align: left;">ONLINE - Delivery</div><div style="width: 50%; float: left; text-align: right;font-size: 28px;line-height: 36px; border: 1px solid black;"><span style="border: 2px solid black;padding: 0px 10px">Order #: <%= order.order_number %></span></div>
       <div style="width: 100%; float: left; text-align: left; border-bottom: 1px solid black;margin-top:10px;margin-bottom: 10px;"></div>
       <div style="width: 50%; float: left; text-align: left;">
         <div><%= order.shipping_address.name %></div>
