@@ -37,7 +37,7 @@
           <%= order.customer.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
         <% } else { %>
         <% } %></div>
-        <div style="margin-top: 15px;"><span style="border: 2px solid black;padding: 0px 10px">Order #: <%= order.order_number %></span></div>
+        <div>Order #: <%= order.order_number %></div>
       </div>
       <div class="half" id="section_two" style="    transform: rotate(90deg);
     -webkit-transform: rotate(90deg);
@@ -55,7 +55,7 @@
       <% if (order.financial_status === "partially_paid" || order.financial_status === "pending") { %>
       <div style="width: 100%; float: left; text-align: left; color: red;font-size: 28px;line-height: 36px;">UNPAID</div>
       <% } else { %>
-      <div style="width: 100%; float: left; text-align: left; color: green;font-size: 28px;line-height: 36px;">PAID</div>><span style="border: 2px solid black;padding: 0px 10px"><span style="border: 2px solid black;padding: 0px 10px">Order #: <%= order.order_number %></span></span><
+      <div style="width: 100%; float: left; text-align: left; color: green;font-size: 28px;line-height: 36px;">PAID</div>
       <% } %>
       <div style="width: 50%; float: left; text-align: left;">ONLINE - Delivery</div><div style="width: 50%; float: left; text-align: right;font-size: 28px;line-height: 36px;"><span style="border: 2px solid black;padding: 0px 10px">Order #: <%= order.order_number %></span></div>
       <div style="width: 100%; float: left; text-align: left; border-bottom: 1px solid black;margin-top:10px;margin-bottom: 10px;"></div>
