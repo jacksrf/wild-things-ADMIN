@@ -109,7 +109,7 @@ router.get('/order/pdf/:id', function(req, res, next) {
                order.note = nl2br(order.note);
                order.created_at = moment(order.created_at).format('M/D/YY')
                order.orderNotes.pickup_date = moment(order.orderNotes.pickup_date).format('M/D/YY')
-               order.pickup_day = moment(order.orderNotes.pickup_date, 'YYYY/MM/DD').format('dddd')
+               order.pickup_day = moment(order.orderNotes.pickup_date, 'M/D/YY').format('dddd')
                order.staff = 'online';
                res.render('web-pickup', {"order": order })
              } else {
