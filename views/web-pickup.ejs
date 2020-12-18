@@ -153,7 +153,9 @@
         <br>
         <div style="width: 100%; float: left; margin-top: 15px;"><b>PICKUP PERSON INFO:</b></div>
         <div style="width: 100%; float: left;"><%= order.customer.name %></div>
-        <div style="width: 100%; float: left;"><%= order.orderNotes.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %></div>
+        <?php if (order.orderNotes.your_phone_number != 'undefined') { ?>
+        <div style="width: 100%; float: left;"><%= order.orderNotes.your_phone_number.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %></div>
+      <?php } ?>
         <div style="width: 100%; float: left;"><%= order.customer.email %></div>
       </div>
 
