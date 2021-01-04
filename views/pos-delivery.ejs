@@ -76,9 +76,9 @@
         <b>Delivery: <%= order.delivery_day %> - <%= order.orderNotes.delivery_date %> <% if (order.orderNotes.delivery_time) {%></br>Time: <%= order.orderNotes.delivery_time.replace(/;/g, ':') %><% } %></b></br>
         <div style="width: 100%; float: left; text-align: left; border-bottom: 1px solid black;margin-top:10px;margin-bottom: 10px;"></div>
         Card Message: </br>
-        <% if (order.orderNotes.card_note) { %>
+        <% if (locals.order.orderNotes.card_note && locals.order.orderNotes.card_note != 'undefined' && locals.order.orderNotes.card_note != 'null') { %>
         <%- order.orderNotes.card_note %>
-        <% } else if (order.note && order.note != 'null') { %>
+        <% } else if (locals.order.note && locals.order.note != 'undefined'&& locals.order.note != 'null') { %>
         <%- order.note %>
         <% } else {%>
         <% } %>
@@ -144,9 +144,9 @@
         <div style="width: 50%; float: left;"><u>Delivery Date:</u> <%= order.orderNotes.delivery_date %></div>
         <div style="width: 50%; float: left;"><u>Delivery Day:</u> <%= order.delivery_day %></div>
         <div style="width: 100%; float: left;"><u>Card Message:</u></br>
-          <% if (locals.order.orderNotes.card_note && locals.order.orderNotes.card_note != 'undefined') { %>
+          <% if (locals.order.orderNotes.card_note && locals.order.orderNotes.card_note != 'undefined' && locals.order.orderNotes.card_note != 'null') { %>
           <%- order.orderNotes.card_note %>
-          <% } else if (locals.order.note) { %>
+          <% } else if (locals.order.note && locals.order.note != 'undefined'&& locals.order.note != 'null') { %>
           <%- order.note %>
           <% } else {%>
           <% } %></div>
@@ -202,9 +202,9 @@
           font-family: 'Neue-Haas-unica-w1g';
           font-weight: 300;">
 
-          <% if (locals.order.orderNotes.card_note && locals.order.orderNotes.card_note != 'undefined') { %>
+          <% if (locals.order.orderNotes.card_note && locals.order.orderNotes.card_note != 'undefined' && locals.order.orderNotes.card_note != 'null') { %>
           <%- order.orderNotes.card_note %>
-          <% } else if (locals.order.note) { %>
+          <% } else if (locals.order.note && locals.order.note != 'undefined'&& locals.order.note != 'null') { %>
           <%- order.note %>
           <% } else {%>
           <% } %>
