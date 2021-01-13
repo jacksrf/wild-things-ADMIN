@@ -94,10 +94,18 @@
           <div class="line_item" style="width: 100%; float: left;">
             <div style="width: 50%; float: left; text-align: left;"><%= order.line_items[i].quantity %> - <%= order.line_items[i].name %></div>
             <div style="width: 50%; float: left; text-align: right;"><%= order.line_items[i].price %></div>
+            <div style="width: 50%; float: left; text-align: left;"><b><u>Flower Requests:</u></b> <%= order.line_items[i].properties[0].value %></br><b><u>Color Palatte:</u></b> <%= order.line_items[i].properties[1].value %></div>
+
           </div>
         <% } %>
-        <div style="width: 100%; float: left; text-align: left;"><b><u>Flower Requests:</u></b> <%= order.orderNotes.flower_request %></br><b><u>Color Palatte:</u></b> <%= order.orderNotes.color_palatte %></div>
-
+        <div style="width: 100%; float: left; text-align: left;">
+          <% if (order.orderNotes.flower_request) { %>
+          <b><u>Flower Requests:</u></b> <%= order.orderNotes.flower_request %></br>
+          <% } %>
+          <% if (order.orderNotes.color_palatte) { %>
+          <b><u>Color Palatte:</u></b> <%= order.orderNotes.color_palatte %>
+          <% } %>
+        </div>
         <div class="total" style="width: 100%; text-align:right;">SUBTOTAL:   <%= order.subtotal_price %></div>
         <div class="total" style="width: 100%; text-align:right;">TAX:   <%= order.total_tax %></div>
         <div class="total" style="width: 100%; text-align:right;">TOTAL:   <%= order.total_price %></div>
@@ -154,10 +162,17 @@
         <% for (i=0;i < order.line_items.length; i++) { %>
           <div class="line_item" style="width: 100%; float: left;">
             <div style="text-align: left;"><%= order.line_items[i].quantity %> - <%= order.line_items[i].name %></div>
+            <div style="text-align: left;"><b><u>Flower Requests:</u></b> <%= order.line_items[i].properties[0].value %></br><b><u>Color Palatte:</u></b> <%= order.line_items[i].properties[1].value %></div>
           </div>
         <% } %>
-        <div style="text-align: left; width: 100%; float: left;"><b><u>Flower Requests:</u></b> <%= order.orderNotes.flower_request %></br><b><u>Color Palatte:</u></b> <%= order.orderNotes.color_palatte %></div>
-
+        <div style="width: 100%; float: left; text-align: left;">
+          <% if (order.orderNotes.flower_request) { %>
+          <b><u>Flower Requests:</u></b> <%= order.orderNotes.flower_request %></br>
+          <% } %>
+          <% if (order.orderNotes.color_palatte) { %>
+          <b><u>Color Palatte:</u></b> <%= order.orderNotes.color_palatte %>
+          <% } %>
+        </div>
         <br>
         <div style="width: 100%; float: left; margin-top: 15px;"><b>DELIVERY ADDRESS:</b></div>
         <div style="width: 100%; float: left;"><%= order.shipping_address.name %></div>
