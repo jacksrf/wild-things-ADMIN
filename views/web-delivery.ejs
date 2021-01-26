@@ -140,8 +140,8 @@
         <div style="width: 50%; float: left;"><u>Order #:</u> <%= order.order_number %></div>
         <div style="width: 50%; float: left;"><u>Delivery Date:</u> <%= order.orderNotes.delivery_date %></div>
         <div style="width: 50%; float: left;"><u>Delivery Day:</u> <%= order.delivery_day %></div>
-        <div style="width: 50%; float: left;"><u>Shop Notes:</u></div>
-        <div style="width: 100%; border: 1px solid black; height:200px;float: left;">
+        <div style="width: 50%; float: left;">Shop Notes:</div>
+        <div style="width: 100%; border: 1px solid black; height:200px;float: left;margin-bottom: 10px;">
         </div>
         <br><br>
         <% for (i=0;i < order.line_items.length; i++) { %>
