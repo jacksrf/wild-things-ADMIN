@@ -152,13 +152,6 @@
         <div style="width: 50%; float: left;"><u>Order #:</u> <%= order.order_number %></div>
         <div style="width: 50%; float: left;"><u>Delivery Date:</u> <%= order.orderNotes.delivery_date %></div>
         <div style="width: 50%; float: left;"><u>Delivery Day:</u> <%= order.delivery_day %></div>
-        <div style="width: 100%; float: left;"><u>Card Message:</u></br>
-          <% if (locals.order.orderNotes.card_note && locals.order.orderNotes.card_note != 'undefined' && locals.order.orderNotes.card_note != 'null') { %>
-          <%- order.orderNotes.card_note %>
-          <% } else if (locals.order.note && locals.order.note != 'undefined'&& locals.order.note != 'null') { %>
-          <%- order.note %>
-          <% } else {%>
-          <% } %></div>
         </br></br>
         <% for (i=0;i < order.line_items.length; i++) { %>
           <div class="line_item" style="width: 100%; float: left;">
@@ -213,10 +206,10 @@
       vertical-align: middle;
       text-align: center;
       width: 100%;
-      padding: 5% 10%;
+      padding: 5% 5%;
       height: 100%;
-      font-size: 30px;
-      line-height: 35px;
+      font-size: 25px;
+      line-height: 25px;
           font-family: 'Neue-Haas-unica-w1g';
           font-weight: 300;">
 
