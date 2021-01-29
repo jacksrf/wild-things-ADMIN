@@ -138,9 +138,12 @@
   line-height: 26px;
   text-align: left;">
   <% if (order.financial_status === "partially_paid" || order.financial_status === "pending") { %>
-  <div style="color: red;font-size: 28px;line-height: 36px;">UNPAID</div>
+  <div style=" width: 25%; float: left;color: red;font-size: 28px;line-height: 36px;">UNPAID</div>
   <% } else { %>
-    <div style="color: green;font-size: 28px;line-height: 36px;">PAID</div>
+    <div style=" width: 25%; float: left;color: green;font-size: 28px;line-height: 36px;">PAID</div>
+  <% } %>
+  <% if (order.source_name === "web" && order.shipping_lines[0].title === "Subscription shipping") { %>
+  <div style="text-align: right; width: 75%; float: left; color: orange;font-size: 28px;line-height: 36px;">FIRST SUBSCRIPTION</div>
   <% } %>
         <div style="width: 50%; float: left;"><u>Order #:</u> <%= order.order_number %></div>
         <div style="width: 50%; float: left;"><u>Delivery Date:</u> <%= order.orderNotes.delivery_date %></div>
