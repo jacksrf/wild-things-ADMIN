@@ -40,7 +40,7 @@
         <div style="width: 100%; float: left;"><u>Delivery Date:</u> <%= order.orderNotes.delivery_date %></div>
         <div style="width: 100%; float: left;"><u>Delivery Day:</u> <%= order.delivery_day %></div>
         <div style="margin-top: 20px; width: 100%; float: left;"><span style="border: 2px solid black;padding: 0px 10px">Order #: <%= order.order_number %></span></div>
-      
+
 
       </div>
       <div class="half" id="section_two" style="    transform: rotate(90deg);
@@ -95,13 +95,16 @@
             <div style="width: 20%; float: left; text-align: right;"><%= order.line_items[i].price %></div>
 
             <div style="width: 50%; float: left; text-align: left;">
+              <% if (order.line_items[i].properties.length > 0) { %>
               <% if (order.line_items[i].properties[0].name === "Flower Requests") { %>
               <b><u>Flower Requests:</u></b> <%= order.line_items[i].properties[0].value %></br>
               <% } %>
               <% if (order.line_items[i].properties[1] && order.line_items[i].properties[1].name === "Color Palatte") { %>
               <b><u>Color Palatte:</u></b> <%= order.line_items[i].properties[1].value %>
               <% } %>
+              <% } %>
             </div>
+
           </div>
         <% } %>
         <div class="total" style="width: 100%; text-align:right;">SUBTOTAL:   <%= order.subtotal_price %></div>
@@ -159,14 +162,18 @@
         <% for (i=0;i < order.line_items.length; i++) { %>
           <div class="line_item" style="width: 100%; float: left;">
             <div style="text-align: left;"><%= order.line_items[i].quantity %> - <%= order.line_items[i].name %></div>
+
             <div style="text-align: left;">
+              <% if (order.line_items[i].properties.length > 0) { %>
               <% if (order.line_items[i].properties[0].name === "Flower Requests") { %>
               <b><u>Flower Requests:</u></b> <%= order.line_items[i].properties[0].value %></br>
               <% } %>
               <% if (order.line_items[i].properties[1] && order.line_items[i].properties[1].name === "Color Palatte") { %>
               <b><u>Color Palatte:</u></b> <%= order.line_items[i].properties[1].value %>
               <% } %>
+              <% } %>
             </div>
+
           </div>
         <% } %>
         <div style="width: 50%; float: left; margin-top: 30px; border-right: 1px solid black; box-sizing: border-box; border-top: 1px solid black;">
