@@ -96,7 +96,7 @@ router.get('/order/pdf/:id', function(req, res, next) {
     staffDB.findOne({"user_id": order.user_id.toString()}, {}, function(err, staff) {
       console.log(order.source_name)
          if (staff === null) {
-           if (order.source_name === 'web') {
+           if (order.source_name === 'web' || order.processing_method === 'direct') {
              if (order.orderNotes.checkout_method === "delivery") {
                order.note = nl2br(order.note);
                order.created_at = moment(order.created_at).format('M/D/YY')

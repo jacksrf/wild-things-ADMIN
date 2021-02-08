@@ -181,8 +181,8 @@
               <%= order.customer.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
             <% } else if (order.billing_address.phone != null) { %>
               <%= order.billing_address.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
-            <% } else if (order.customer.phone != null) { %>
-              <%= order.customer.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
+            <% } else if (order.shipping_address.phone != null) { %>
+              <%= order.shipping_address.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
             <% } else { %>
             <% } %>
 
