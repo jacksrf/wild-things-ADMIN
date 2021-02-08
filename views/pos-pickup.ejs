@@ -27,11 +27,11 @@
     line-height: 31px;">
         <div>To: <%= order.customer.first_name %> <%= order.customer.last_name %></div>
         <div>**** In Store Pickup  ****</div>
-        <div>Phone: <% if (order.customer.phone) { %>
+        <div>Phone: <% if (order.customer.phone != null) { %>
           <%= order.customer.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
-        <% } else if (order.billing_address) { %>
+        <% } else if (order.billing_address.phone != null) { %>
           <%= order.billing_address.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
-        <% } else if (order.customer.phone) { %>
+        <% } else if (order.customer.phone != null) { %>
           <%= order.customer.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
         <% } else { %>
         <% } %></div>
@@ -63,11 +63,11 @@
       <div style="width: 100%; float: left; text-align: left; border-bottom: 1px solid black;margin-top:10px;margin-bottom: 10px;"></div>
       <div style="width: 50%; float: left; text-align: left;">
         <%= order.customer.first_name %> <%= order.customer.last_name %></br>
-        <% if (order.customer.phone) { %>
+        <% if (order.customer.phone != null) { %>
           <%= order.customer.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
-        <% } else if (order.billing_address) { %>
+        <% } else if (order.billing_address.phone != null) { %>
           <%= order.billing_address.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
-        <% } else if (order.customer.phone) { %>
+        <% } else if (order.customer.phone != null) { %>
           <%= order.customer.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
         <% } else { %>
         <% } %></br>
@@ -122,9 +122,9 @@
             <div><%= order.customer.first_name %> <%= order.customer.last_name %></div>
             <div><% if (order.customer.phone) { %>
               <%= order.customer.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
-            <% } else if (order.billing_address) { %>
+            <% } else if (order.billing_address.phone != null) { %>
               <%= order.billing_address.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
-            <% } else if (order.customer.phone) { %>
+            <% } else if (order.customer.phone != null) { %>
               <%= order.customer.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
             <% } else { %>
             <% } %></div>
@@ -177,11 +177,11 @@
           <div style="width: 100%; float: left; margin-top: 15px;"><b>PICKUP PERSON INFO:</b></div>
           <div style="width: 100%; float: left;"><%= order.customer.first_name %> <%= order.customer.last_name %></div>
           <div style="width: 100%; float: left;">
-            <% if (order.customer.phone) { %>
+            <% if (order.customer.phone != null) { %>
               <%= order.customer.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
-            <% } else if (order.billing_address) { %>
+            <% } else if (order.billing_address.phone != null) { %>
               <%= order.billing_address.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
-            <% } else if (order.customer.phone) { %>
+            <% } else if (order.customer.phone != null) { %>
               <%= order.customer.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
             <% } else { %>
             <% } %>
