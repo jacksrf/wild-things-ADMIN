@@ -185,7 +185,9 @@
         <% } %>
         <div style="width: 50%; float: left; margin-top: 30px; border-right: 1px solid black; box-sizing: border-box; border-top: 1px solid black;">
           <div style="width: 100%; float: left; margin-top: 15px;"><b>DELIVERY ADDRESS:</b></div>
+          <% if (order.shipping_address.company) { %>
           <div style="width: 100%; float: left;"><%= order.shipping_address.company %></div>
+          <% } %>
           <div style="width: 100%; float: left;"><%= order.shipping_address.name %></div>
           <div style="width: 100%; float: left;"><%= order.shipping_address.address1 %> - <%= order.shipping_address.address2 %></div>
           <div style="width: 100%; float: left;"><%= order.shipping_address.city %>, <%= order.shipping_address.province_code %> <%= order.shipping_address.zip %></div>
