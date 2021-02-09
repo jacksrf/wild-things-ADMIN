@@ -67,7 +67,11 @@
         <div><%= order.shipping_address.name %></div>
         <div><%= order.shipping_address.address1 %> - <%= order.shipping_address.address2 %></div>
         <div><%= order.shipping_address.city %>, <%= order.shipping_address.province_code %> <%= order.shipping_address.zip %></div>
+        <% if (order.shipping_address.phone != null) { %>
         <div><%= order.shipping_address.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %></div>
+        <% } else if (order.orderNotes.phone) { %>
+        <div><%= order.orderNotes.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %></div>
+        <% } %>
         </br>
         Order Taken By:</br>
         Online at <%= order.created_at %>
@@ -181,7 +185,11 @@
           <div style="width: 100%; float: left;"><%= order.shipping_address.name %></div>
           <div style="width: 100%; float: left;"><%= order.shipping_address.address1 %> - <%= order.shipping_address.address2 %></div>
           <div style="width: 100%; float: left;"><%= order.shipping_address.city %>, <%= order.shipping_address.province_code %> <%= order.shipping_address.zip %></div>
+          <% if (order.shipping_address.phone != null) { %>
           <div style="width: 100%; float: left;"><%= order.shipping_address.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %></div>
+          <% } else if (order.orderNotes.phone) { %>
+          <div style="width: 100%; float: left;"><%= order.orderNotes.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %></div>
+          <% } %>
         </div>
         <div style="width: 50%; float: left; margin-top: 30px;  border-top: 1px solid black; box-sizing: border-box; padding-left: 10px;">
           <div style="width: 100%; float: left; margin-top: 15px;"><b>SENDER INFO:</b></div>
