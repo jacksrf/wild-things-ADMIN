@@ -29,13 +29,10 @@
         <div>****  Delivery  ****</div>
         <div><%= order.shipping_address.address1 %>, <%= order.shipping_address.address2 %></div>
         <div><%= order.shipping_address.city %>, <%= order.shipping_address.state %> <%= order.shipping_address.zip %></div>
-        <div>Phone: <% if (order.customer.phone) { %>
-          <%= order.customer.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
-        <% } else if (order.billing_address) { %>
-          <%= order.billing_address.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
-        <% } else if (order.customer.phone) { %>
-          <%= order.customer.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
+        <div>Phone: <%= order.customer.first_name %> <%= order.customer.last_name %></br>
+        <% if (order.customer.phone === undefined || order.customer.phone === null) { %>
         <% } else { %>
+          Phone:  <%= order.customer.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
         <% } %></div>
         <div style="width: 100%; float: left;"><u>Delivery Date:</u> <%= order.orderNotes.delivery_date %></div>
         <div style="width: 100%; float: left;"><u>Delivery Day:</u> <%= order.delivery_day %></div>
@@ -118,14 +115,11 @@
             <div>ID:<%= order.customer.id %></div>
             <div><%= order.customer.first_name %> <%= order.customer.last_name %></div>
             <div>
-            <% if (order.customer.phone) { %>
-              <%= order.customer.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
-            <% } else if (order.billing_address) { %>
-              <%= order.billing_address.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
-            <% } else if (order.customer.phone) { %>
-              <%= order.customer.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
-            <% } else { %>
-            <% } %>
+              <%= order.customer.first_name %> <%= order.customer.last_name %></br>
+              <% if (order.customer.phone === undefined || order.customer.phone === null) { %>
+              <% } else { %>
+                Phone:  <%= order.customer.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
+              <% } %>
           </div>
             <% } %>
 
@@ -185,13 +179,10 @@
           <div style="width: 100%; float: left; margin-top: 15px;"><b>SENDER INFO:</b></div>
           <div style="width: 100%; float: left;"><%= order.customer.first_name %> <%= order.customer.last_name %></div>
           <div style="width: 100%; float: left;">
-            <% if (order.customer.phone) { %>
-              <%= order.customer.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
-            <% } else if (order.billing_address) { %>
-              <%= order.billing_address.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
-            <% } else if (order.customer.phone) { %>
-              <%= order.customer.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
+            <%= order.customer.first_name %> <%= order.customer.last_name %></br>
+            <% if (order.customer.phone === undefined || order.customer.phone === null) { %>
             <% } else { %>
+              Phone:  <%= order.customer.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
             <% } %>
           </div>
           <div style="width: 100%; float: left;"><%= order.customer.email %></div>
