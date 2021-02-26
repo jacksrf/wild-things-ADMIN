@@ -29,10 +29,10 @@
         <div>****  Delivery  ****</div>
         <div><%= order.shipping_address.address1 %>, <%= order.shipping_address.address2 %></div>
         <div><%= order.shipping_address.city %>, <%= order.shipping_address.state %> <%= order.shipping_address.zip %></div>
-        <div>Phone: <%= order.customer.first_name %> <%= order.customer.last_name %></br>
-        <% if (order.customer.phone === undefined || order.customer.phone === null) { %>
+        <!-- <div>Phone: <%= order.customer.first_name %> <%= order.customer.last_name %></br> -->
+        <% if (order.shipping_address.phone === undefined || order.shipping_address.phone === null) { %>
         <% } else { %>
-          Phone:  <%= order.customer.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
+          Phone:  <%= order.shipping_address.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
         <% } %></div>
         <div style="width: 100%; float: left;"><u>Delivery Date:</u> <%= order.orderNotes.delivery_date %></div>
         <div style="width: 100%; float: left;"><u>Delivery Day:</u> <%= order.delivery_day %></div>
