@@ -29,7 +29,7 @@
         <div>****  Delivery  ****</div>
         <div><%= order.shipping_address.address1 %>, <%= order.shipping_address.address2 %></div>
         <div><%= order.shipping_address.city %>, <%= order.shipping_address.state %> <%= order.shipping_address.zip %></div>
-        <!-- <div>Phone: <%= order.customer.first_name %> <%= order.customer.last_name %></br> -->
+        <div>
         <% if (order.shipping_address.phone === undefined || order.shipping_address.phone === null) { %>
         <% } else { %>
           Phone:  <%= order.shipping_address.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
