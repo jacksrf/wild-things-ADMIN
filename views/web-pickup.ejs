@@ -29,7 +29,7 @@
         <div>**** In Store Pickup  ****</div>
         <div>Phone: <% if (order.customer.phone) { %>
           <%= order.customer.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
-        <% } else if (order.billing_address) { %>
+        <% } else if (order.billing_address.phone) { %>
           <%= order.billing_address.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
         <% } else if (order.customer.phone) { %>
           <%= order.customer.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
