@@ -29,9 +29,7 @@
         <div>**** In Store Pickup  ****</div>
         <div>Phone: <% if (order.orderNotes.your_phone_number) { %>
           <%= order.orderNotes.your_phone_number.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
-        } else if (order.customer.phone) { %>
-          <%= order.customer.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
-        <% } else if (order.customer.default_address.phone) { %>
+        <% } else if (order.customer.default_address) { %>
           <%= order.customer.default_address.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
         <% } else if (order.billing_address) { %>
           <%= order.billing_address.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
@@ -66,8 +64,6 @@
         <%= order.customer.first_name %> <%= order.customer.last_name %></br>
        <% if (order.orderNotes.your_phone_number) { %>
           <%= order.orderNotes.your_phone_number.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
-        } else if (order.customer.phone) { %>
-          <%= order.customer.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
         <% } else if (order.customer.default_address.phone) { %>
           <%= order.customer.default_address.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
         <% } else if (order.billing_address) { %>
@@ -128,8 +124,6 @@
             <div><%= order.customer.first_name %> <%= order.customer.last_name %></div>
           <div><% if (order.orderNotes.your_phone_number) { %>
           <%= order.orderNotes.your_phone_number.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
-        } else if (order.customer.phone) { %>
-          <%= order.customer.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
         <% } else if (order.customer.default_address.phone) { %>
           <%= order.customer.default_address.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
         <% } else if (order.billing_address) { %>
