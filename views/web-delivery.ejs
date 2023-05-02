@@ -31,12 +31,12 @@
         <div><%= order.shipping_address.city %>, <%= order.shipping_address.province_code %> <%= order.shipping_address.zip %></div>
         <div>Phone: <% if (order.orderNotes.your_phone_number) { %>
           <%= order.orderNotes.your_phone_number.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
-        <% } else if (order.customer.default_address.phone) { %>
-          <%= order.customer.default_address.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
-        <% } else if (order.billing_address) { %>
-          <%= order.billing_address.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
-        
+        <% } else if (order.customer) { %>
+          <%= order.customer.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
+        <% } else if (order.default_address) { %>
+          <%= order.default_address.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
         <% } else { %>
+        <%= order.billing_address.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
         <% } %></div>
         <div style="width: 100%; float: left;"><u>Delivery Date:</u> <%= order.orderNotes.delivery_date %></div>
         <div style="width: 100%; float: left;"><u>Delivery Day:</u> <%= order.delivery_day %></div>
@@ -126,14 +126,14 @@
             <div>ID:<%= order.customer.id %></div>
             <div><%= order.customer.first_name %> <%= order.customer.last_name %></div>
           <div>
-            <% if (order.orderNotes.your_phone_number) { %>
+           <% if (order.orderNotes.your_phone_number) { %>
           <%= order.orderNotes.your_phone_number.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
-        <% } else if (order.customer.default_address.phone) { %>
-          <%= order.customer.default_address.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
-        <% } else if (order.billing_address) { %>
-          <%= order.billing_address.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
-        
+        <% } else if (order.customer) { %>
+          <%= order.customer.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
+        <% } else if (order.default_address) { %>
+          <%= order.default_address.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
         <% } else { %>
+        <%= order.billing_address.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
         <% } %>
         </div>
             <% } %>
@@ -203,14 +203,14 @@
           <div style="width: 100%; float: left; margin-top: 15px;"><b>SENDER INFO:</b></div>
           <div style="width: 100%; float: left;"><%= order.customer.first_name %> <%= order.customer.last_name %></div>
           <div style="width: 100%; float: left;">
-            <% if (order.orderNotes.your_phone_number) { %>
+           <% if (order.orderNotes.your_phone_number) { %>
           <%= order.orderNotes.your_phone_number.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
-        <% } else if (order.customer.default_address.phone) { %>
-          <%= order.customer.default_address.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
-        <% } else if (order.billing_address) { %>
-          <%= order.billing_address.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
-        
+        <% } else if (order.customer) { %>
+          <%= order.customer.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
+        <% } else if (order.default_address) { %>
+          <%= order.default_address.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
         <% } else { %>
+        <%= order.billing_address.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
         <% } %>
             </div>
             <div style="width: 100%; float: left;"><%= order.customer.email %></div>
