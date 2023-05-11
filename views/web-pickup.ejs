@@ -29,8 +29,10 @@
         <div>**** In Store Pickup  ****</div>
         <div>Phone: <% if (order.orderNotes.your_phone_number) { %>
           <%= order.orderNotes.your_phone_number.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
-        <% } else if (order.customer) { %>
+        <% } else if (order.customer ) { %>
+           <% if (order.customer.phone ) { %>
           <%= order.customer.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
+          <% } %>
         <% } else if (order.default_address) { %>
           <%= order.default_address.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
         <% } else { %>
@@ -64,8 +66,10 @@
         <%= order.customer.first_name %> <%= order.customer.last_name %></br>
       <% if (order.orderNotes.your_phone_number) { %>
           <%= order.orderNotes.your_phone_number.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
-        <% } else if (order.customer) { %>
+        <% } else if (order.customer ) { %>
+           <% if (order.customer.phone ) { %>
           <%= order.customer.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
+          <% } %>
         <% } else if (order.default_address) { %>
           <%= order.default_address.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
         <% } else { %>
@@ -124,8 +128,10 @@
             <div><%= order.customer.first_name %> <%= order.customer.last_name %></div>
           <div><% if (order.orderNotes.your_phone_number) { %>
           <%= order.orderNotes.your_phone_number.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
-        <% } else if (order.customer) { %>
+        <% } else if (order.customer ) { %>
+           <% if (order.customer.phone ) { %>
           <%= order.customer.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
+          <% } %>
         <% } else if (order.default_address) { %>
           <%= order.default_address.phone.replace('+1', '').replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2 $3'); %>
         <% } else { %>
