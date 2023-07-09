@@ -1,6 +1,5 @@
 'use strict';
 
-const assign = require('lodash/assign');
 const qs = require('qs');
 
 /**
@@ -96,15 +95,22 @@ const base = {
   buildUrl(id, query) {
     id || id === 0 || (id = '');
 
-    let path = `/admin/${this.name}/${id}`
-      .replace(/\/+/g, '/')
-      .replace(/\/$/, '');
+    let pathname = '/admin';
 
-    path += '.json';
+    if (this.shopify.options.apiVersion) {
+      pathname += `/api/${this.shopify.options.apiVersion}`;
+    }
 
-    if (query) path += '?' + qs.stringify(query, { arrayFormat: 'brackets' });
+    pathname += `/${this.name}/${id}`;
+    pathname = pathname.replace(/\/+/g, '/').replace(/\/$/, '') + '.json';
 
-    return assign({ path }, this.shopify.baseUrl);
+    const url = { pathname, ...this.shopify.baseUrl };
+
+    if (query) {
+      url.search = '?' + qs.stringify(query, { arrayFormat: 'brackets' });
+    }
+
+    return url;
   }
 };
 
